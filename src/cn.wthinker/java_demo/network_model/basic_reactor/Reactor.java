@@ -21,8 +21,8 @@ public class Reactor extends Thread{
             try{
                 SocketChannel c = serverSocket.accept();
                 if (c != null) {
-                    new Handler(selector, c);
                     System.out.println("Server receive new connect from port: " + c.socket().getPort());
+                    new Handler(selector, c);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
