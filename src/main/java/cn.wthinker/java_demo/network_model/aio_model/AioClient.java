@@ -1,6 +1,6 @@
 package cn.wthinker.java_demo.network_model.aio_model;
 
-import java_demo.network_model.reactor_with_subReactor.NioClient;
+import cn.wthinker.java_demo.network_model.reactor_with_subReactor.NioClient;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

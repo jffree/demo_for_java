@@ -39,7 +39,7 @@ public class Reactor extends Thread {
             System.out.println(String.format("Start reactor %d !", reactorId));
             while (!Thread.interrupted()){
                 selector.selectNow();
-                Set selected = selector.selectedKeys();
+                Set<SelectionKey> selected = selector.selectedKeys();
                 selected.forEach(sk -> dispatch((SelectionKey) sk));
             }
         } catch (IOException e) {

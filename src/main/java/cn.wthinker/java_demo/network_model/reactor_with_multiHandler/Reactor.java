@@ -56,7 +56,7 @@ public class Reactor extends Thread {
         try{
             while (!Thread.interrupted()){
                 selector.select();
-                Set selected = selector.selectedKeys();
+                Set<SelectionKey> selected = selector.selectedKeys();
                 selected.forEach(sk -> dispatch((SelectionKey) sk));
             }
         } catch (IOException e) {

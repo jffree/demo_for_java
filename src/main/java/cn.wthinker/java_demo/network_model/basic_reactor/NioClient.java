@@ -144,7 +144,7 @@ public class NioClient extends Thread {
         try{
             while (!Thread.interrupted()){
                 selector.select(1000);
-                Set selected = selector.selectedKeys();
+                Set<SelectionKey> selected = selector.selectedKeys();
                 selected.forEach(sk -> dispatch((SelectionKey) sk));
             }
         } catch (IOException e) {
