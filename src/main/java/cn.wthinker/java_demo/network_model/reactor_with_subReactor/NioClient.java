@@ -1,4 +1,4 @@
-package java_demo.network_model.reactor_with_multiHandler;
+package cn.wthinker.java_demo.network_model.reactor_with_subReactor;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -17,18 +17,18 @@ import java.util.stream.IntStream;
  */
 
 public class NioClient extends Thread {
-    private static AtomicInteger id = new AtomicInteger();
-    private Selector selector;
-    private SocketChannel socketChannel;
-    private SelectionKey sk;
-    final private ByteBuffer input  = ByteBuffer.allocate(1000);
-    final private ByteBuffer output = ByteBuffer.allocate(1000);
-    private Reader reader;
-    private Sender sender;
-    private int port;
-    private String host;
-    private int clientId;
-    private boolean stopped = false;
+    private static AtomicInteger id      = new AtomicInteger();
+    private Selector             selector;
+    private SocketChannel        socketChannel;
+    private SelectionKey         sk;
+    final private ByteBuffer     input   = ByteBuffer.allocate(1000);
+    final private ByteBuffer     output  = ByteBuffer.allocate(1000);
+    private Reader               reader;
+    private Sender               sender;
+    private int                  port;
+    private String               host;
+    private int                  clientId;
+    private boolean              stopped = false;
 
     public NioClient(String host, int port) throws IOException {
         this.host = host;
@@ -37,10 +37,11 @@ public class NioClient extends Thread {
         selector = Selector.open();
         socketChannel = SocketChannel.open();
         socketChannel.configureBlocking(false);
-        if(socketChannel.connect(new InetSocketAddress(this.host, this.port))){
-            System.out.println(String.format("Start client %d on port: %d", clientId, socketChannel.socket().getLocalPort()));
+        if (socketChannel.connect(new InetSocketAddress(this.host, this.port))) {
+            System.out.println(String.format("Start client %d on port: %d", clientId, socketChannel.socket()
+                .getLocalPort()));
             sk = socketChannel.register(selector, 0);
-            if(sender == null){
+            if (sender == null) {
                 sender = new Sender();
             }
             sk.attach(sender);
@@ -52,12 +53,13 @@ public class NioClient extends Thread {
         }
     }
 
-    public class Connector implements Runnable{
+    public class Connector implements Runnable {
         @Override
-        public void run(){
+        public void run() {
             try {
                 if (socketChannel.finishConnect()) {
-                    System.out.println(String.format("Start client %d on port: %d", clientId, socketChannel.socket().getLocalPort()));
+                    System.out.println(String.format("Start client %d on port: %d", clientId, socketChannel.socket()
+                        .getLocalPort()));
                     if (sender == null)
                         sender = new Sender();
                     sk.attach(sender);
@@ -72,15 +74,14 @@ public class NioClient extends Thread {
         }
     }
 
-    public class Reader implements Runnable{
+    public class Reader implements Runnable {
         public boolean inputIsComplete() throws IOException {
             int readBytes = socketChannel.read(input);
-            if(readBytes > 0)
+            if (readBytes > 0)
                 return true;
-            else if (readBytes == 0){
+            else if (readBytes == 0) {
                 return false;
-            }
-            else {
+            } else {
                 System.out.println("Remote socket closed!");
                 sk.cancel();
                 return false;
@@ -88,9 +89,9 @@ public class NioClient extends Thread {
         }
 
         @Override
-        public void run(){
+        public void run() {
             try {
-                if(inputIsComplete()) {
+                if (inputIsComplete()) {
                     input.flip();
                     byte[] bytes = new byte[input.limit()];
                     input.get(bytes, 0, input.limit());
@@ -107,21 +108,20 @@ public class NioClient extends Thread {
         }
     }
 
-
-    public class Sender implements Runnable{
-        public boolean outputIsComplete(){
+    public class Sender implements Runnable {
+        public boolean outputIsComplete() {
             return true;
         }
 
         @Override
-        public void run(){
+        public void run() {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             output.put((String.format("%s client %d send data.", df.format(new Date()), clientId)).getBytes());
-            if(outputIsComplete()){
+            if (outputIsComplete()) {
                 output.flip();
                 try {
                     socketChannel.write(output);
-                    if(reader == null) {
+                    if (reader == null) {
                         reader = new Reader();
                         sk.interestOps(SelectionKey.OP_READ);
                     }
@@ -136,9 +136,9 @@ public class NioClient extends Thread {
         }
     }
 
-    void dispatch(SelectionKey sk){
+    void dispatch(SelectionKey sk) {
         Runnable r = (Runnable) (sk.attachment());
-        if(r != null)
+        if (r != null)
             r.run();
     }
 
@@ -146,7 +146,7 @@ public class NioClient extends Thread {
     public void run(){
         try{
             while (!Thread.interrupted() && !stopped){
-                selector.select(1000);
+                selector.select(100);
                 Set selected = selector.selectedKeys();
                 selected.forEach(sk -> dispatch((SelectionKey) sk));
             }
@@ -170,6 +170,4 @@ public class NioClient extends Thread {
             }
         });
     }
-
-
 }

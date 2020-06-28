@@ -1,4 +1,4 @@
-package java_demo.network_model.aio_model;
+package cn.wthinker.java_demo.network_model.aio_model;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -9,16 +9,15 @@ import java.util.Date;
 
 public class ReadCompleteHandler implements CompletionHandler<Integer, Void> {
     private AsynchronousSocketChannel socketChannel;
-    private ByteBuffer readBuffer;
-    private ByteBuffer sendBuffer;
+    private ByteBuffer                readBuffer;
+    private ByteBuffer                sendBuffer;
 
-
-    public ReadCompleteHandler(AsynchronousSocketChannel socketChannel, ByteBuffer buffer){
+    public ReadCompleteHandler(AsynchronousSocketChannel socketChannel, ByteBuffer buffer) {
         this.socketChannel = socketChannel;
         this.readBuffer = buffer;
     }
 
-    public void process(){
+    public void process() {
         readBuffer.flip();
         byte[] bytes = new byte[readBuffer.limit()];
         readBuffer.get(bytes);
@@ -28,8 +27,8 @@ public class ReadCompleteHandler implements CompletionHandler<Integer, Void> {
         socketChannel.read(readBuffer, null, this);
     }
 
-    public void send(){
-        if(sendBuffer == null)
+    public void send() {
+        if (sendBuffer == null)
             sendBuffer = ByteBuffer.allocate(1000);
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -40,7 +39,7 @@ public class ReadCompleteHandler implements CompletionHandler<Integer, Void> {
 
     @Override
     public void completed(Integer result, Void attachment) {
-        if(result == -1){
+        if (result == -1) {
             try {
                 socketChannel.close();
             } catch (IOException e) {

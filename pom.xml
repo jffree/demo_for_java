@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>0.1.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
     <groupId>cn.wthinker.java_demo</groupId>
     <artifactId>java_demo</artifactId>
     <version>0.1.0</version>
@@ -12,7 +12,7 @@
     <developers>
         <developer>
             <name>jffree</name>
-            <url>http://wthinker.cn</url>
+            <url>https://github.com/jffree/demo_for_java</url>
             <timezone>8</timezone>
         </developer>
     </developers>
@@ -23,8 +23,8 @@
     </scm>
     <licenses>
         <license>
-            <name>GNU LESSER GENERAL PUBLIC LICENSE</name>
-            <url>http://www.gnu.org/licenses/lgpl.html</url>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
 
@@ -32,11 +32,11 @@
         <plugins>
             <!-- formatter and sortpom -->
             <plugin>
-                <groupId>net.revelc.code.formatter</groupId>
-                <artifactId>formatter-maven-plugin</artifactId>
-                <version>2.8.1</version>
+                <groupId>com.googlecode.maven-java-formatter-plugin</groupId>
+                <artifactId>maven-java-formatter-plugin</artifactId>
+                <version>0.4</version>
                 <configuration>
-                    <configFile>${project.basedir}/eclipse-java-google-style.xml</configFile>
+                    <configFile>${project.basedir}/tools/codestyle/formatter.xml</configFile>
                     <lineEnding>LF</lineEnding>
                     <encoding>utf-8</encoding>
                 </configuration>

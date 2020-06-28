@@ -1,4 +1,4 @@
-package java_demo.network_model.basic_reactor;
+package cn.wthinker.java_demo.network_model.reactor_with_multiHandler;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -12,16 +12,16 @@ import java.util.Set;
  * Ref: Scalable IO in Java
  */
 
-public class Reactor extends Thread{
-    final Selector selector;
+public class Reactor extends Thread {
+    final Selector            selector;
     final ServerSocketChannel serverSocket;
-    int port;
-    String host;
+    int                       port;
+    String                    host;
 
-    class Acceptor implements Runnable{
+    class Acceptor implements Runnable {
         @Override
-        public void run(){
-            try{
+        public void run() {
+            try {
                 SocketChannel c = serverSocket.accept();
                 if (c != null) {
                     System.out.println("Server receive new connect from port: " + c.socket().getPort());
@@ -45,9 +45,9 @@ public class Reactor extends Thread{
         sk.attach(new Acceptor());
     }
 
-    void dispatch(SelectionKey sk){
+    void dispatch(SelectionKey sk) {
         Runnable r = (Runnable) (sk.attachment());
-        if(r != null)
+        if (r != null)
             r.run();
     }
 

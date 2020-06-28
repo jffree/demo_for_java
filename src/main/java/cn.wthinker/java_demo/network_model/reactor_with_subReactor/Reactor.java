@@ -1,4 +1,4 @@
-package java_demo.network_model.reactor_with_subReactor;
+package cn.wthinker.java_demo.network_model.reactor_with_subReactor;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -13,23 +13,23 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Ref: Scalable IO in Java
  */
 
-public class Reactor extends Thread{
-    protected Selector selector;
+public class Reactor extends Thread {
+    protected Selector           selector;
     private static AtomicInteger id = new AtomicInteger();
-    private int reactorId;
+    private int                  reactorId;
 
     public Reactor() throws IOException {
         selector = Selector.open();
         reactorId = id.getAndIncrement();
     }
 
-    public Selector getSelector(){
+    public Selector getSelector() {
         return selector;
     }
 
-    void dispatch(SelectionKey sk){
+    void dispatch(SelectionKey sk) {
         Runnable r = (Runnable) (sk.attachment());
-        if(r != null)
+        if (r != null)
             r.run();
     }
 

@@ -1,4 +1,4 @@
-package java_demo.network_model.aio_model;
+package cn.wthinker.java_demo.network_model.aio_model;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousSocketChannel;
@@ -8,7 +8,7 @@ public class AcceptCompleteHandler implements CompletionHandler<AsynchronousSock
 
     @Override
     public void completed(AsynchronousSocketChannel result, AioServer attachment) {
-        attachment.getServerSocketChannel().accept(attachment, this);       //  try accept next connection
+        attachment.getServerSocketChannel().accept(attachment, this); //  try accept next connection
         ByteBuffer buffer = ByteBuffer.allocate(1000);
         result.read(buffer, null, new ReadCompleteHandler(result, buffer));
     }

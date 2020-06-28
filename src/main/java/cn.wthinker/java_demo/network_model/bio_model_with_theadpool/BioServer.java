@@ -1,4 +1,4 @@
-package java_demo.network_model.bio_model_with_theadpool;
+package cn.wthinker.java_demo.network_model.bio_model_with_theadpool;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -9,14 +9,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.*;
 
-public class BioServer extends Thread{
-    private int port;
-    private ServerSocket server;
+public class BioServer extends Thread {
+    private int                port;
+    private ServerSocket       server;
     private ThreadPoolExecutor executor;
 
-    static class RequestHandler implements Runnable{
-        private Socket socket;
-        private PrintWriter writer;
+    static class RequestHandler implements Runnable {
+        private Socket         socket;
+        private PrintWriter    writer;
         private BufferedReader reader;
 
         public RequestHandler(Socket socket) throws IOException {
@@ -26,7 +26,7 @@ public class BioServer extends Thread{
         }
 
         @Override
-        public void run(){
+        public void run() {
             try {
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 while (true) {
@@ -41,7 +41,7 @@ public class BioServer extends Thread{
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("socket closed!");
-            }finally {
+            } finally {
                 try {
                     reader.close();
                     writer.close();
@@ -56,9 +56,7 @@ public class BioServer extends Thread{
         this.port = port;
         server = new ServerSocket();
         server.bind(new InetSocketAddress(InetAddress.getLocalHost(), port));
-        executor = new ThreadPoolExecutor(2, 4,
-                5, TimeUnit.SECONDS,
-                new LinkedBlockingDeque<Runnable>(4));
+        executor = new ThreadPoolExecutor(2, 4, 5, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(4));
     }
 
     @Override

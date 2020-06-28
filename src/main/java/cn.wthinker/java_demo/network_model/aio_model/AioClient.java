@@ -1,4 +1,4 @@
-package java_demo.network_model.aio_model;
+package cn.wthinker.java_demo.network_model.aio_model;
 
 import java_demo.network_model.reactor_with_subReactor.NioClient;
 
@@ -13,13 +13,13 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
-public class AioClient  extends  Thread{
-    private String host;
-    private int port;
+public class AioClient extends Thread {
+    private String                    host;
+    private int                       port;
     private AsynchronousSocketChannel socketChannel;
-    private CountDownLatch  countDownLatch = new CountDownLatch(1);
-    private static AtomicInteger id = new AtomicInteger();
-    private int clientId;
+    private CountDownLatch            countDownLatch = new CountDownLatch(1);
+    private static AtomicInteger      id             = new AtomicInteger();
+    private int                       clientId;
 
     public AioClient(String host, int port) throws IOException {
         this.host = host;
@@ -28,7 +28,7 @@ public class AioClient  extends  Thread{
         socketChannel = AsynchronousSocketChannel.open();
     }
 
-    public class ConnectHandler implements CompletionHandler<AsynchronousSocketChannel, AioClient>{
+    public class ConnectHandler implements CompletionHandler<AsynchronousSocketChannel, AioClient> {
         ByteBuffer sendBuffer = ByteBuffer.allocate(1000);
 
         @Override
@@ -45,17 +45,17 @@ public class AioClient  extends  Thread{
         }
     }
 
-    public class SenderHandler implements CompletionHandler<Integer, ByteBuffer>{
+    public class SenderHandler implements CompletionHandler<Integer, ByteBuffer> {
         private ByteBuffer readBuffer;
 
         @Override
         public void completed(Integer result, ByteBuffer attachment) {
-            if(result < attachment.limit()){
+            if (result < attachment.limit()) {
                 socketChannel.write(attachment, attachment, this);
                 return;
             }
             attachment.clear();
-            if(readBuffer == null){
+            if (readBuffer == null) {
                 readBuffer = ByteBuffer.allocate(1000);
                 socketChannel.read(readBuffer, readBuffer, new ReaderHandler());
             }
@@ -68,12 +68,11 @@ public class AioClient  extends  Thread{
         }
     }
 
-
-    public class ReaderHandler implements CompletionHandler<Integer, ByteBuffer>{
+    public class ReaderHandler implements CompletionHandler<Integer, ByteBuffer> {
 
         @Override
         public void completed(Integer result, ByteBuffer attachment) {
-            if(result < 0)
+            if (result < 0)
                 AioClient.this.cancel();
             attachment.flip();
             byte[] bytes = new byte[attachment.limit()];
@@ -90,16 +89,16 @@ public class AioClient  extends  Thread{
         }
     }
 
-    public AsynchronousSocketChannel socketChannel(){
+    public AsynchronousSocketChannel socketChannel() {
         return socketChannel;
     }
 
-    public void cancel(){
+    public void cancel() {
         countDownLatch.countDown();
     }
 
     @Override
-    public void run(){
+    public void run() {
         socketChannel.connect(new InetSocketAddress(host, port));
         System.out.println(String.format("Start client %d.", clientId));
         try {
@@ -124,5 +123,4 @@ public class AioClient  extends  Thread{
             }
         });
     }
-
 }

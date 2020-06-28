@@ -1,15 +1,15 @@
-package java_demo.network_model.aio_model;
+package cn.wthinker.java_demo.network_model.aio_model;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.AsynchronousServerSocketChannel;
 import java.util.concurrent.CountDownLatch;
 
-public class AioServer extends Thread{
-    private String host;
-    private int port;
+public class AioServer extends Thread {
+    private String                          host;
+    private int                             port;
     private AsynchronousServerSocketChannel serverSocketChannel;
-    private CountDownLatch countDownLatch = new CountDownLatch(1);
+    private CountDownLatch                  countDownLatch = new CountDownLatch(1);
 
     public AioServer(String host, int port) throws IOException {
         this.host = host;
@@ -19,17 +19,16 @@ public class AioServer extends Thread{
         System.out.println("Server run on port: " + this.port);
     }
 
-    public void cancel(){
+    public void cancel() {
         countDownLatch.countDown();
     }
 
-
-    public AsynchronousServerSocketChannel getServerSocketChannel(){
+    public AsynchronousServerSocketChannel getServerSocketChannel() {
         return serverSocketChannel;
     }
 
     @Override
-    public void run(){
+    public void run() {
         serverSocketChannel.accept(this, new AcceptCompleteHandler());
         try {
             countDownLatch.await();

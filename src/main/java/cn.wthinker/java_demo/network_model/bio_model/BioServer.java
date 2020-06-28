@@ -1,4 +1,4 @@
-package java_demo.network_model.bio_model;
+package cn.wthinker.java_demo.network_model.bio_model;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -8,13 +8,13 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class BioServer extends Thread{
-    private int port;
+public class BioServer extends Thread {
+    private int          port;
     private ServerSocket server;
 
-    static class RequestHandler implements Runnable{
-        private Socket socket;
-        private PrintWriter writer;
+    static class RequestHandler implements Runnable {
+        private Socket         socket;
+        private PrintWriter    writer;
         private BufferedReader reader;
 
         public RequestHandler(Socket socket) throws IOException {
@@ -24,7 +24,7 @@ public class BioServer extends Thread{
         }
 
         @Override
-        public void run(){
+        public void run() {
             try {
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 while (true) {
@@ -54,7 +54,7 @@ public class BioServer extends Thread{
             while (true) {
                 Socket socket = server.accept();
                 System.out.println("Server receive new connect from port: " + socket.getPort());
-                new Thread( new RequestHandler(socket)).start();
+                new Thread(new RequestHandler(socket)).start();
                 Thread.sleep(1000);
             }
         } catch (Exception e) {
