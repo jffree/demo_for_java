@@ -16,11 +16,13 @@
             <timezone>8</timezone>
         </developer>
     </developers>
+
     <scm>
         <connection>scm:git:https://github.com/jffree/demo_for_java.git</connection>
         <developerConnection>scm:git:https://github.com/jffree/demo_for_java.git</developerConnection>
         <url>https://github.com/jffree/demo_for_java.git</url>
     </scm>
+
     <licenses>
         <license>
             <name>The Apache License, Version 2.0</name>
@@ -31,6 +33,21 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.72</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+    </dependencies>
+
+
 
     <build>
         <plugins>
