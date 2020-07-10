@@ -6,6 +6,10 @@
 
 3. 在字符流中输出主要是使用 `Writer` 类完成，输入流主要使用 `Reader` 类完成，字符流一般以字节流对象为参数构造。
 
+4. PipedInputStream运用的是一个数组作为数据缓冲区（默认大小为 1024 字节），并不是真正意义上的管道。写入PipedOutputStream的数据实际上保存到对应的 PipedInputStream的内部缓冲区。
+   从PipedInputStream执行读操作时，读取的数据实际上来自这个内部缓冲区。如果对应的 PipedInputStream输入缓冲区已满，任何企图写入PipedOutputStream的线程都将被阻塞。
+   而且这个写操作线程将一直阻塞，直至出现读取PipedInputStream的操作从缓冲区删除数据。
+
 
 ## 类层次图
 
@@ -14,3 +18,5 @@
 ## 参考
 
 * [Java总结：Java 流(Stream)、文件(File)和IO](https://www.cnblogs.com/52fhy/p/8232825.html)
+
+* [java io系列01之 "目录"](https://www.cnblogs.com/skywang12345/p/io_01.html)
