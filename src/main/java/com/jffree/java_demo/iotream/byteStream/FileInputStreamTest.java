@@ -11,7 +11,7 @@ public class FileInputStreamTest {
         InputStream fis = null;
 
         try {
-            fis = new FileInputStream("e:\\github\\test.txt");
+            fis = new FileInputStream("e:\\github\\test-file\\test.txt");
             try {
                 size = fis.available();
                 System.out.println("可读取的字节数 " + size);

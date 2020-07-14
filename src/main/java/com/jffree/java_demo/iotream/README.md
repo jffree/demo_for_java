@@ -6,10 +6,19 @@
 
 3. 在字符流中输出主要是使用 `Writer` 类完成，输入流主要使用 `Reader` 类完成，字符流一般以字节流对象为参数构造。
 
-4. PipedInputStream运用的是一个数组作为数据缓冲区（默认大小为 1024 字节），并不是真正意义上的管道。写入PipedOutputStream的数据实际上保存到对应的 PipedInputStream的内部缓冲区。
-   从PipedInputStream执行读操作时，读取的数据实际上来自这个内部缓冲区。如果对应的 PipedInputStream输入缓冲区已满，任何企图写入PipedOutputStream的线程都将被阻塞。
-   而且这个写操作线程将一直阻塞，直至出现读取PipedInputStream的操作从缓冲区删除数据。
+4. `PipedInputStream` 运用的是一个数组作为数据缓冲区（默认大小为 1024 字节），并不是真正意义上的管道。写入 `PipedOutputStream` 的数据实际上保存到对应的 PipedInputStream的内部缓冲区。
+   从 `PipedInputStream` 执行读操作时，读取的数据实际上来自这个内部缓冲区。如果对应的 `PipedInputStream` 输入缓冲区已满，任何企图写入 `PipedOutputStream` 的线程都将被阻塞。
+   而且这个写操作线程将一直阻塞，直至出现读取 `PipedInputStream` 的操作从缓冲区删除数据。
 
+5. 序列化并不是对类的所有的成员变量的状态都能保存
+    1. 序列化对 `static` 和 `transient` 变量，是不会自动进行状态保存的。`transient` 的作用就是，用 `transient` 声明的变量，不会被自动序列化。
+    2. 对于 `Socket`, `Thread` 类，不支持序列化。若实现序列化的接口中，有 `Thread` 成员；在对该类进行序列化操作时，编译会出错！
+       这主要是基于资源分配方面的原因。如果 `Socket`，`Thread` 类可以被序列化，但是被反序列化之后也无法对他们进行重新的资源分配；再者，也是没有必要这样实现。
+
+6. `FilterInputStream` 和 `FilterOutputStream` 是装饰者模式的实现，这两个 stream 接受其他的输入输出流作为参数进行封装，其继承类在封装的基础上实现更多的功能
+    1.  BufferedInputStream 本质上是通过一个内部缓冲区数组实现的，在新建某输入流对应的BufferedInputStream后，当我们通过read()读取输入流的数据时，BufferedInputStream会将该输入流的数据分批的填入到缓冲区中。每当缓冲区中的数据被读完之后，输入流会再次填充数据缓冲区；如此反复，直到我们读完输入流数据位置。
+        提供“缓冲功能”以及支持“mark()标记”和“reset()重置方法”。
+    2. `BufferedOutputStream` 通过字节数组来缓冲数据，当缓冲区满或者用户调用flush()函数时，它就会将缓冲区的数据写入到输出流中。
 
 ## 类层次图
 
