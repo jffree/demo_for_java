@@ -1,6 +1,8 @@
 # IO STREAM
 
 1. 在 `java.io` 包中操作文件内容的主要有两大类：字节流（一个字节为单位）、字符流（两个字节为单位），两类都分为输入和输出操作。
+    * byte 是字节数据类型 ，是有符号型的，占1 个字节；大小范围为-128—127 。
+      char 是字符数据类型 ，是无符号型的，占2字节(Unicode码 ）；大小范围 是0—65535 ；char是一个16位二进制的Unicode字符，JAVA用char来表示一个字符。
 
 2. 在字节流中输出数据主要是使用 `OutputStream` 完成，输入使的是 `InputStream`，字节流一般以 IO 对象为参数构造。
 
@@ -22,6 +24,8 @@
     3. `DataInputStream` 和 `DataOutputStream` 允许应用程序以与机器无关方式从底层输入流中读写基本 Java 数据类型。
     4. `PrintStream` 的作用虽然也是装饰其他输出流，但是它的目的不是以与机器无关的方式从底层读写java数据类型；
        而是为其它输出流提供打印各种数据值表示形式，使其它输出流能方便的通过 `print()`, `println()` 或 `printf()` 等输出各种格式的数据。
+
+7. `PipedWriter`、`PipedReader` 跟 `PipedInputStream`、`PipedOutputStream` 一样，都是采用数组作为中间的管道。
 
 ## 类层次图
 
