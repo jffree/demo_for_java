@@ -27,6 +27,12 @@
 
 7. `PipedWriter`、`PipedReader` 跟 `PipedInputStream`、`PipedOutputStream` 一样，都是采用数组作为中间的管道。
 
+8. `InputStreamReader` 和 `OutputStreamWriter` 是字节流通向字符流的桥梁：它使用指定的 charset 读写字节并将其解码为字符。
+
+9. `FileReader` 和 `FileWriter` 是专门封装的用于操作文件的字符流处理类，通过构造 `FileInputStream` 和 `FileOutputStream` 并将其封装到 `InputStreamReader` 和 `OutputStreamWriter` 中来实现。
+
+10. `BufferedReader` 和 `BufferedWriter ` 的作用是为其他字符输入流添加一些缓冲功能
+
 ## 类层次图
 
 ![输入流和输出流的类层次图](https://images2017.cnblogs.com/blog/663847/201801/663847-20180107231342065-2108564502.png)
