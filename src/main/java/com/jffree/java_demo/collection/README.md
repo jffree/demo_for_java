@@ -1,5 +1,7 @@
 # 集合相关
 
+## List 相关
+
 1. `ArrayList` 是一个数组队列，相当于动态数组。
 
 2. fail-fast 机制是java集合(`Collection`)中的一种错误机制。
@@ -17,3 +19,11 @@
         3. 顺序访问速度很快，随机访问速度很慢
         
 4. `Vector` 的原理与 `ArrayList` 是一样的，但 `Vector` 中的操作是线程安全的。
+   Vector没有实现序列化接口。
+
+5. `Stack` 很简单，它继承于 `Vector`。 `Stack` 是栈。它的特性是：先进后出(`FILO, First In Last Out`)。
+
+6. 使用总结
+    1. 对于需要快速插入，删除元素，应该使用LinkedList。
+    2. 对于需要快速随机访问元素，应该使用ArrayList。
+    3. 对于“单线程环境” 或者 “多线程环境，但List仅仅只会被单个线程操作”，此时应该使用非同步的类。
