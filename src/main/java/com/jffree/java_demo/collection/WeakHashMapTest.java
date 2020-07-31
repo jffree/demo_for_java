@@ -30,21 +30,19 @@ public class WeakHashMapTest {
         wmap.put(w3, "w3");
 
         // 打印出wmap
-        System.out.printf("\nwmap:%s\n",wmap );
+        System.out.printf("\nwmap:%s\n", wmap);
 
         // containsKey(Object key) :是否包含键key
-        System.out.printf("contains key two : %s\n",wmap.containsKey("two"));
-        System.out.printf("contains key five : %s\n",wmap.containsKey("five"));
+        System.out.printf("contains key two : %s\n", wmap.containsKey("two"));
+        System.out.printf("contains key five : %s\n", wmap.containsKey("five"));
 
         // containsValue(Object value) :是否包含值value
-        System.out.printf("contains value 0 : %s\n",wmap.containsValue(new Integer(0)));
+        System.out.printf("contains value 0 : %s\n", wmap.containsValue(new Integer(0)));
 
         // remove(Object key) ： 删除键key对应的键值对
         wmap.remove("three");
 
-        System.out.printf("wmap: %s\n",wmap );
-
-
+        System.out.printf("wmap: %s\n", wmap);
 
         // ---- 测试 WeakHashMap 的自动回收特性 ----
 
@@ -57,8 +55,8 @@ public class WeakHashMapTest {
         // 遍历WeakHashMap
         Iterator iter = wmap.entrySet().iterator();
         while (iter.hasNext()) {
-            Map.Entry en = (Map.Entry)iter.next();
-            System.out.printf("next : %s - %s\n",en.getKey(),en.getValue());
+            Map.Entry en = (Map.Entry) iter.next();
+            System.out.printf("next : %s - %s\n", en.getKey(), en.getValue());
         }
         // 打印WeakHashMap的实际大小
         System.out.printf(" after gc WeakHashMap size:%s\n", wmap.size());

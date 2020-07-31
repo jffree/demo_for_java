@@ -40,7 +40,7 @@ public class DateTest {
         // (02) 月 -- 0-11 的月份。0是一月,1是二月,依次类推。
         // (03) 日 -- 1-31 之间的某一天。
         // 设置时间为“1988-08-08”
-        date = new Date(88,7,8);
+        date = new Date(88, 7, 8);
         System.out.printf("Constructor-1  : %s\n", tostring(date));
 
         // Date构造函数二：传入“年、月、日、时、分”
@@ -50,7 +50,7 @@ public class DateTest {
         // (04) 时 -- 0-23 之间的小时数。
         // (05) 分 -- 0-59 之间的分钟数。
         // 设置时间为“1999-09-09 19:19”
-        date = new Date(99,8,9,19,19);
+        date = new Date(99, 8, 9, 19, 19);
         System.out.printf("Constructor-2  : %s\n", tostring(date));
 
         // Date构造函数三：传入“年、月、日、时、分、秒”
@@ -60,7 +60,7 @@ public class DateTest {
         // (04) 时 -- 0-23 之间的小时数。
         // (05) 分 -- 0-59 之间的分钟数。
         // (06) 秒 -- 0-59 之间的秒钟数。
-        date = new Date(100,10,10,20,10,10);
+        date = new Date(100, 10, 10, 20, 10, 10);
         System.out.printf("Constructor-3  : %s\n", tostring(date));
 
         // Date构造函数四：传入“毫秒”。 毫秒 = “目标时间” - “1970-01-01 00:00:00 GMT”
@@ -105,16 +105,16 @@ public class DateTest {
         int timezoneoffset = date.getTimezoneOffset();
 
         //System.out.printf("\t!!!date get is: %s\n", tostring(date));
-        System.out.println("\t!!!get date: "+year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second+"\t"+millis+"(ms)");
+        System.out.println("\t!!!get date: " + year + "-" + month + "-" + day + " " + hour + ":" + minute + ":"
+                           + second + "\t" + millis + "(ms)");
     }
-
 
     /**
      * 测试Date类的“设置”函数
      */
     private static void testDateSet() {
         // 新建date
-        Date date = new Date(99,8,9);
+        Date date = new Date(99, 8, 9);
 
         // 设置Date为“2013-09-19 15:28:30”
         // 设为“2013年”。传入值是“‘目标年份’ - ‘1900 的年份’”
@@ -144,9 +144,9 @@ public class DateTest {
      */
     private static void testOtherDateAPIs() {
         // 初始化d1=2008-05-12, d2=2009-03-15。
-        Date d1 = new Date(108,4,12);
+        Date d1 = new Date(108, 4, 12);
         System.out.printf("\nd1 is: %s\n", tostring(d1));
-        Date d2 = new Date(109,2,15);
+        Date d2 = new Date(109, 2, 15);
         System.out.printf("d2 is: %s\n", tostring(d2));
 
         // 克隆
@@ -164,8 +164,7 @@ public class DateTest {
         // 若d1 晚于 d2，返回 1
         // 若d1 等于 d2，返回 0
         int comp = d1.compareTo(d2);
-        System.out.printf("isBefore=%s, isAfter=%s, isEquals=%s, comp=%s\n",
-                isBefore, isAfter, isEquals, comp);
+        System.out.printf("isBefore=%s, isAfter=%s, isEquals=%s, comp=%s\n", isBefore, isAfter, isEquals, comp);
 
         // parse接口
         long millis = Date.parse("13 Mar 2009");
@@ -185,13 +184,13 @@ public class DateTest {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH)+1;
+        int month = cal.get(Calendar.MONTH) + 1;
         int day = cal.get(Calendar.DATE);
         int hour = cal.get(Calendar.HOUR);
         int minute = cal.get(Calendar.MINUTE);
         int second = cal.get(Calendar.SECOND);
         long millis = cal.getTimeInMillis();
 
-        return year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second+"\t"+millis+"(ms)";
+        return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second + "\t" + millis + "(ms)";
     }
 }

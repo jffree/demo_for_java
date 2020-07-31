@@ -7,10 +7,10 @@ public class ClassFieldReflectTest {
 
     public static void main(String[] args) {
         // getDeclaredField() 的测试函数
-        testGetDeclaredField() ;
+        testGetDeclaredField();
 
         // getField() 的测试函数
-        testGetField() ;
+        testGetField();
     }
 
     /**
@@ -32,11 +32,10 @@ public class ClassFieldReflectTest {
             // 根据构造函数，创建相应的对象
             fName.set(person, "Hamier");
             fAge.set(person, 31);
-            fGender.setAccessible(true);  // 因为"flag"是private权限，所以要设置访问权限为true；否则，会抛出异常。
+            fGender.setAccessible(true); // 因为"flag"是private权限，所以要设置访问权限为true；否则，会抛出异常。
             fGender.set(person, Gender.FEMALE);
 
-            System.out.printf("%-30s: person=%s\n",
-                    "getDeclaredField()", person);
+            System.out.printf("%-30s: person=%s\n", "getDeclaredField()", person);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,7 +54,7 @@ public class ClassFieldReflectTest {
 
             // 根据class，获取Filed
             Field fName = cls.getField("name");
-            Field fAge = cls.getDeclaredField("age");       // 抛出异常，因为Person中age是protected权限。
+            Field fAge = cls.getDeclaredField("age"); // 抛出异常，因为Person中age是protected权限。
             Field fGender = cls.getDeclaredField("gender"); // 抛出异常，因为Person中gender是private权限。
 
             // 根据构造函数，创建相应的对象
@@ -63,24 +62,24 @@ public class ClassFieldReflectTest {
             //fAge.set(person, 26);
             //fGender.set(person, Gender.FEMALE);
 
-            System.out.printf("%-30s: person=%s\n",
-                    "getField()", person);
+            System.out.printf("%-30s: person=%s\n", "getField()", person);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static enum Gender{
+    public static enum Gender {
         MALE, FEMALE
     }
+
     // 人
     public static class Person {
         // private。性别
         private Gender gender;
         // protected。 年龄
-        protected int age;
+        protected int  age;
         // public。 姓名
-        public String name;
+        public String  name;
 
         public Person() {
             this("unknown", 0, Gender.FEMALE);
@@ -94,7 +93,7 @@ public class ClassFieldReflectTest {
 
         @Override
         public String toString() {
-            return "("+name+", "+age+", "+gender+")";
+            return "(" + name + ", " + age + ", " + gender + ")";
         }
     }
 }

@@ -15,15 +15,15 @@ public class SuperclassAndInterfaceReflectTest {
             // 获取“Person”实现的全部接口
             Type[] intfs = cls.getGenericInterfaces();
 
-            System.out.println("father="+father);
-            for (Type t:intfs)
-                System.out.println("t="+t);
+            System.out.println("father=" + father);
+            for (Type t : intfs)
+                System.out.println("t=" + t);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static class Person extends Object implements Serializable, Runnable{
+    public static class Person extends Object implements Serializable, Runnable {
 
         @Override
         public void run() {

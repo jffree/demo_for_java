@@ -28,7 +28,7 @@ class Person {
      */
     @MyAnnotation
     @Deprecated
-    public void empty(){
+    public void empty() {
         System.out.println("\nempty");
     }
 
@@ -36,9 +36,9 @@ class Person {
      * sombody() 被 @MyAnnotation(value={"girl","boy"}) 所标注，
      * @MyAnnotation(value={"girl","boy"}), 意味着MyAnnotation的value值是{"girl","boy"}
      */
-    @MyAnnotation(value={"girl","boy"})
-    public void somebody(String name, int age){
-        System.out.println("\nsomebody: "+name+", "+age);
+    @MyAnnotation(value = { "girl", "boy" })
+    public void somebody(String name, int age) {
+        System.out.println("\nsomebody: " + name + ", " + age);
     }
 }
 
@@ -51,35 +51,34 @@ public class AnnotationTest {
         // 获取Person的Class实例
         Class<Person> c = Person.class;
         // 获取 somebody() 方法的Method实例
-        Method mSomebody = c.getMethod("somebody", new Class[]{String.class, int.class});
+        Method mSomebody = c.getMethod("somebody", new Class[] { String.class, int.class });
         // 执行该方法
-        mSomebody.invoke(person, new Object[]{"lily", 18});
+        mSomebody.invoke(person, new Object[] { "lily", 18 });
         iteratorAnnotations(mSomebody);
 
-
         // 获取 somebody() 方法的Method实例
-        Method mEmpty = c.getMethod("empty", new Class[]{});
+        Method mEmpty = c.getMethod("empty", new Class[] {});
         // 执行该方法
-        mEmpty.invoke(person, new Object[]{});
+        mEmpty.invoke(person, new Object[] {});
         iteratorAnnotations(mEmpty);
     }
 
     public static void iteratorAnnotations(Method method) {
 
         // 判断 somebody() 方法是否包含MyAnnotation注解
-        if(method.isAnnotationPresent(MyAnnotation.class)){
+        if (method.isAnnotationPresent(MyAnnotation.class)) {
             // 获取该方法的MyAnnotation注解实例
             MyAnnotation myAnnotation = method.getAnnotation(MyAnnotation.class);
             // 获取 myAnnotation的值，并打印出来
             String[] values = myAnnotation.value();
-            for (String str:values)
-                System.out.printf(str+", ");
+            for (String str : values)
+                System.out.printf(str + ", ");
             System.out.println();
         }
 
         // 获取方法上的所有注解，并打印出来
         Annotation[] annotations = method.getAnnotations();
-        for(Annotation annotation : annotations){
+        for (Annotation annotation : annotations) {
             System.out.println(annotation);
         }
     }
@@ -96,7 +95,7 @@ public class AnnotationTest {
          */
         @MyAnnotation
         @Deprecated
-        public void empty(){
+        public void empty() {
             System.out.println("\nempty");
         }
 
@@ -104,9 +103,9 @@ public class AnnotationTest {
          * sombody() 被 @MyAnnotation(value={"girl","boy"}) 所标注，
          * @MyAnnotation(value={"girl","boy"}), 意味着MyAnnotation的value值是{"girl","boy"}
          */
-        @MyAnnotation(value={"girl","boy"})
-        public void somebody(String name, int age){
-            System.out.println("\nsomebody: "+name+", "+age);
+        @MyAnnotation(value = { "girl", "boy" })
+        public void somebody(String name, int age) {
+            System.out.println("\nsomebody: " + name + ", " + age);
         }
     }
 }

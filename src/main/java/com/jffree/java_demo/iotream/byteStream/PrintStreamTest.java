@@ -16,12 +16,12 @@ public class PrintStreamTest {
 
         // 下面3个函数的作用都是一样：都是将字母“abcde”写入到文件“file.txt”中。
         // 任选一个执行即可！
-        testPrintStreamConstrutor1() ;
+        testPrintStreamConstrutor1();
         //testPrintStreamConstrutor2() ;
         //testPrintStreamConstrutor3() ;
 
         // 测试write(), print(), println(), printf()等接口。
-        testPrintStreamAPIS() ;
+        testPrintStreamAPIS();
     }
 
     /**
@@ -31,13 +31,12 @@ public class PrintStreamTest {
      */
     private static void testPrintStreamConstrutor1() {
         // 0x61对应ASCII码的字母'a'，0x62对应ASCII码的字母'b', ...
-        final byte[] arr={0x61, 0x62, 0x63, 0x64, 0x65 }; // abced
+        final byte[] arr = { 0x61, 0x62, 0x63, 0x64, 0x65 }; // abced
         try {
             // 创建文件“file.txt”的File对象
             File file = new File("e:\\github\\test-file\\test.txt");
             // 创建文件对应FileOutputStream
-            PrintStream out = new PrintStream(
-                    new FileOutputStream(file));
+            PrintStream out = new PrintStream(new FileOutputStream(file));
             // 将“字节数组arr”全部写入到输出流中
             out.write(arr);
             // 关闭输出流
@@ -53,7 +52,7 @@ public class PrintStreamTest {
      * 函数的作用，就是将字母“abcde”写入到文件“file.txt”中
      */
     private static void testPrintStreamConstrutor2() {
-        final byte[] arr={0x61, 0x62, 0x63, 0x64, 0x65 };
+        final byte[] arr = { 0x61, 0x62, 0x63, 0x64, 0x65 };
         try {
             File file = new File("e:\\github\\test-file\\test.txt");
             PrintStream out = new PrintStream(file);
@@ -70,7 +69,7 @@ public class PrintStreamTest {
      * 函数的作用，就是将字母“abcde”写入到文件“file.txt”中
      */
     private static void testPrintStreamConstrutor3() {
-        final byte[] arr={0x61, 0x62, 0x63, 0x64, 0x65 };
+        final byte[] arr = { 0x61, 0x62, 0x63, 0x64, 0x65 };
         try {
             PrintStream out = new PrintStream("e:\\github\\test-file\\test.txt");
             out.write(arr);
@@ -85,7 +84,7 @@ public class PrintStreamTest {
      */
     private static void testPrintStreamAPIS() {
         // 0x61对应ASCII码的字母'a'，0x62对应ASCII码的字母'b', ...
-        final byte[] arr={0x61, 0x62, 0x63, 0x64, 0x65 }; // abced
+        final byte[] arr = { 0x61, 0x62, 0x63, 0x64, 0x65 }; // abced
         try {
             // 创建文件对应FileOutputStream
             PrintStream out = new PrintStream("e:\\github\\test-file\\test.txt");

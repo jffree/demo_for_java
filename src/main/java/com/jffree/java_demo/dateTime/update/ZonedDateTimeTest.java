@@ -9,7 +9,7 @@ public class ZonedDateTimeTest {
 
     }
 
-    public static void autoCreateTest(){
+    public static void autoCreateTest() {
         //表示的时间一样
         ZonedDateTime zbj = ZonedDateTime.now(); // 默认时区
         ZonedDateTime zny = ZonedDateTime.now(ZoneId.of("America/New_York")); // 用指定时区获取当前时间
@@ -17,7 +17,7 @@ public class ZonedDateTimeTest {
         System.out.println(zny);
     }
 
-    public static void manualCreateTest(){
+    public static void manualCreateTest() {
         //表示的时间不一样
         LocalDateTime ldt = LocalDateTime.of(2019, 9, 15, 15, 16, 17);
         ZonedDateTime zbj = ldt.atZone(ZoneId.systemDefault());
@@ -26,7 +26,7 @@ public class ZonedDateTimeTest {
         System.out.println(zny);
     }
 
-    public static void zoneConvertTest(){
+    public static void zoneConvertTest() {
         // 以中国时区获取当前时间:
         ZonedDateTime zbj = ZonedDateTime.now(ZoneId.of("Asia/Shanghai"));
         // 转换为纽约时间:

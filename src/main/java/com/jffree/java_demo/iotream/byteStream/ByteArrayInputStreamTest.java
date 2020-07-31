@@ -4,18 +4,16 @@ import java.io.ByteArrayInputStream;
 
 public class ByteArrayInputStreamTest {
 
-    private static final int LEN = 5;
+    private static final int    LEN          = 5;
     // 对应英文字母“abcddefghijklmnopqrsttuvwxyz”
-    private static final byte[] ArrayLetters = {
-            0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x6A, 0x6B, 0x6C, 0x6D, 0x6E, 0x6F,
-            0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78, 0x79, 0x7A
-    };
+    private static final byte[] ArrayLetters = { 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x6A, 0x6B,
+            0x6C, 0x6D, 0x6E, 0x6F, 0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78, 0x79, 0x7A };
 
     public static void main(String[] args) {
         String tmp = new String(ArrayLetters);
-        System.out.println("ArrayLetters="+tmp);
+        System.out.println("ArrayLetters=" + tmp);
 
-        tesByteArrayInputStream() ;
+        tesByteArrayInputStream();
     }
 
     /**
@@ -26,7 +24,7 @@ public class ByteArrayInputStreamTest {
         ByteArrayInputStream bais = new ByteArrayInputStream(ArrayLetters);
 
         // 从字节流中读取5个字节
-        for (int i=0; i<LEN; i++) {
+        for (int i = 0; i < LEN; i++) {
             // 若能继续读取下一个字节，则读取下一个字节
             if (bais.available() >= 0) {
                 // 读取“字节流的下一个字节”
@@ -38,7 +36,7 @@ public class ByteArrayInputStreamTest {
         // 若“该字节流”不支持标记功能，则直接退出
         if (!bais.markSupported()) {
             System.out.println("make not supported!");
-            return ;
+            return;
         }
 
         // 标记“字节流中下一个被读取的位置”。即--标记“0x66”，因为因为前面已经读取了5个字节，所以下一个被读取的位置是第6个字节”
@@ -64,6 +62,5 @@ public class ByteArrayInputStreamTest {
         String str2 = new String(buf);
         System.out.printf("str2=%s\n", str2);
     }
-
 
 }

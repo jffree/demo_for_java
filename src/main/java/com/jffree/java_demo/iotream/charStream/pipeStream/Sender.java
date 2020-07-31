@@ -3,6 +3,7 @@ package com.jffree.java_demo.iotream.charStream.pipeStream;
 import java.io.IOException;
 
 import java.io.PipedWriter;
+
 @SuppressWarnings("all")
 /**
  * 发送者线程
@@ -15,19 +16,19 @@ public class Sender extends Thread {
     private PipedWriter out = new PipedWriter();
 
     // 获得“管道输出流”对象
-    public PipedWriter getWriter(){
+    public PipedWriter getWriter() {
         return out;
     }
 
     @Override
-    public void run(){
+    public void run() {
         writeShortMessage();
         //writeLongMessage();
     }
 
     // 向“管道输出流”中写入一则较简短的消息："this is a short message"
     private void writeShortMessage() {
-        String strInfo = "this is a short message" ;
+        String strInfo = "this is a short message";
         try {
             out.write(strInfo.toCharArray());
             out.close();
@@ -35,11 +36,12 @@ public class Sender extends Thread {
             e.printStackTrace();
         }
     }
+
     // 向“管道输出流”中写入一则较长的消息
     private void writeLongMessage() {
         StringBuilder sb = new StringBuilder();
         // 通过for循环写入1020个字符
-        for (int i=0; i<102; i++)
+        for (int i = 0; i < 102; i++)
             sb.append("0123456789");
         // 再写入26个字符。
         sb.append("abcdefghijklmnopqrstuvwxyz");

@@ -15,14 +15,14 @@ public class IteratorEnumerationTest {
         int val;
         Random r = new Random();
         Hashtable table = new Hashtable();
-        for (int i=0; i<100000; i++) {
+        for (int i = 0; i < 100000; i++) {
             // 随机获取一个[0,100)之间的数字
             val = r.nextInt(100);
             table.put(String.valueOf(i), val);
         }
 
         // 通过Iterator遍历Hashtable
-        iterateHashtable(table) ;
+        iterateHashtable(table);
 
         // 通过Enumeration遍历Hashtable
         enumHashtable(table);
@@ -35,7 +35,7 @@ public class IteratorEnumerationTest {
         long startTime = System.currentTimeMillis();
 
         Iterator iter = table.entrySet().iterator();
-        while(iter.hasNext()) {
+        while (iter.hasNext()) {
             //System.out.println("iter:"+iter.next());
             iter.next();
         }
@@ -51,7 +51,7 @@ public class IteratorEnumerationTest {
         long startTime = System.currentTimeMillis();
 
         Enumeration enu = table.elements();
-        while(enu.hasMoreElements()) {
+        while (enu.hasMoreElements()) {
             //System.out.println("enu:"+enu.nextElement());
             enu.nextElement();
         }
@@ -61,6 +61,6 @@ public class IteratorEnumerationTest {
     }
 
     private static void countTime(long start, long end) {
-        System.out.println("time: "+(end-start)+"ms");
+        System.out.println("time: " + (end - start) + "ms");
     }
 }

@@ -13,9 +13,9 @@ public class DataInputOutputStreamTest {
 
     public static void main(String[] args) {
         // 测试DataOutputStream，将数据写入到输出流中。
-        testDataOutputStream() ;
+        testDataOutputStream();
         // 测试DataInputStream，从上面的输出流结果中读取数据。
-        testDataInputStream() ;
+        testDataInputStream();
     }
 
     /**
@@ -25,14 +25,12 @@ public class DataInputOutputStreamTest {
 
         try {
             File file = new File("e:\\github\\test-file\\test.txt");
-            DataOutputStream out =
-                    new DataOutputStream(
-                            new FileOutputStream(file));
+            DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
 
             out.writeBoolean(true);
-            out.writeByte((byte)0x41);
-            out.writeChar((char)0x4243);
-            out.writeShort((short)0x4445);
+            out.writeByte((byte) 0x41);
+            out.writeChar((char) 0x4243);
+            out.writeShort((short) 0x4445);
             out.writeInt(0x12345678);
             out.writeLong(0x0FEDCBA987654321L);
 
@@ -47,6 +45,7 @@ public class DataInputOutputStreamTest {
             e.printStackTrace();
         }
     }
+
     /**
      * DataInputStream的API测试函数
      */
@@ -54,12 +53,10 @@ public class DataInputOutputStreamTest {
 
         try {
             File file = new File("e:\\github\\test-file\\test.txt");
-            DataInputStream in =
-                    new DataInputStream(
-                            new FileInputStream(file));
+            DataInputStream in = new DataInputStream(new FileInputStream(file));
 
-            System.out.printf("byteToHexString(0x8F):0x%s\n", byteToHexString((byte)0x8F));
-            System.out.printf("charToHexString(0x8FCF):0x%s\n", charToHexString((char)0x8FCF));
+            System.out.printf("byteToHexString(0x8F):0x%s\n", byteToHexString((byte) 0x8F));
+            System.out.printf("charToHexString(0x8FCF):0x%s\n", charToHexString((char) 0x8FCF));
 
             System.out.printf("readBoolean():%s\n", in.readBoolean());
             System.out.printf("readByte():0x%s\n", byteToHexString(in.readByte()));

@@ -15,15 +15,14 @@ public class TimeZoneTest {
     public static void main(String[] args) {
 
         // 测试创建TimeZone对象的3种方法
-        showUsageOfTimeZones() ;
+        showUsageOfTimeZones();
 
         // 测试TimeZone的其它API
-        testOtherAPIs() ;
+        testOtherAPIs();
 
         // 打印getTimeZone(String id)支持的所有id
-        printAllTimeZones() ;
+        printAllTimeZones();
     }
-
 
     /**
      * 测试创建TimeZone对象的3种方法
@@ -33,19 +32,19 @@ public class TimeZoneTest {
 
         // (01) 默认时区
         tz = TimeZone.getDefault();
-        printDateIn(tz) ;
+        printDateIn(tz);
 
         // (02) 设置时区为"GMT+08:00"
         tz = TimeZone.getTimeZone("GMT+08:00");
-        printDateIn(tz) ;
+        printDateIn(tz);
 
         // (03) 设置时区为"Asia/Chongqing"
         tz = TimeZone.getTimeZone("Asia/Chongqing");
-        printDateIn(tz) ;
+        printDateIn(tz);
 
         // (04) 设置时区为"Europe/Berlin"
         tz = TimeZone.getTimeZone("Europe/Berlin");
-        printDateIn(tz) ;
+        printDateIn(tz);
     }
 
     /**
@@ -61,7 +60,7 @@ public class TimeZoneTest {
         // 获取格式化后的字符串
         String str = df.format(date);
 
-        System.out.println(tz.getID()+" :"+str);
+        System.out.println(tz.getID() + " :" + str);
     }
 
     /**
@@ -80,10 +79,9 @@ public class TimeZoneTest {
         // 获取“时间偏移”。相对于“本初子午线”的偏移，单位是ms。
         int offset = tz.getRawOffset();
         // 获取“时间偏移” 对应的小时
-        int gmt = offset/(3600*1000);
+        int gmt = offset / (3600 * 1000);
 
-        System.out.printf("id=%s, name=%s, offset=%s(ms), gmt=%s\n",
-                id, name, offset, gmt);
+        System.out.printf("id=%s, name=%s, offset=%s(ms), gmt=%s\n", id, name, offset, gmt);
     }
 
     /**
@@ -92,10 +90,10 @@ public class TimeZoneTest {
     public static void printAllTimeZones() {
 
         String[] ids = TimeZone.getAvailableIDs();
-        for (String id:ids) {
+        for (String id : ids) {
             //int offset = TimeZone.getTimeZone(avaIds[i]).getRawOffset();
             //System.out.println(i+"  "+avaIds[i]+" "+offset / (3600 * 1000) + "\t");
-            System.out.printf(id+", ");
+            System.out.printf(id + ", ");
         }
         System.out.println();
     }

@@ -5,12 +5,13 @@ import java.io.IOException;
 
 public class CharArrayReaderTest {
 
-    private static final int LEN = 5;
+    private static final int    LEN          = 5;
     // 对应英文字母“abcdefghijklmnopqrstuvwxyz”
-    private static final char[] ArrayLetters = new char[] {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    private static final char[] ArrayLetters = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+            'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 
     public static void main(String[] args) {
-        tesCharArrayReader() ;
+        tesCharArrayReader();
     }
 
     /**
@@ -22,11 +23,11 @@ public class CharArrayReaderTest {
             CharArrayReader car = new CharArrayReader(ArrayLetters);
 
             // 从字符数组流中读取5个字符
-            for (int i=0; i<LEN; i++) {
+            for (int i = 0; i < LEN; i++) {
                 // 若能继续读取下一个字符，则读取下一个字符
                 if (car.ready() == true) {
                     // 读取“字符流的下一个字符”
-                    char tmp = (char)car.read();
+                    char tmp = (char) car.read();
                     System.out.printf("%d : %c\n", i, tmp);
                 }
             }
@@ -34,7 +35,7 @@ public class CharArrayReaderTest {
             // 若“该字符流”不支持标记功能，则直接退出
             if (!car.markSupported()) {
                 System.out.println("make not supported!");
-                return ;
+                return;
             }
 
             // 标记“字符流中下一个被读取的位置”。即--标记“f”，因为因为前面已经读取了5个字符，所以下一个被读取的位置是第6个字符”

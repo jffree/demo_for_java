@@ -10,12 +10,12 @@ import java.util.HashMap;
 public class StringBuilderTest {
 
     public static void main(String[] args) {
-        testOtherAPIs() ;
-        testIndexAPIs() ;
-        testInsertAPIs() ;
-        testAppendAPIs() ;
-        testReplaceAPIs() ;
-        testDeleteAPIs() ;
+        testOtherAPIs();
+        testIndexAPIs();
+        testInsertAPIs();
+        testAppendAPIs();
+        testReplaceAPIs();
+        testDeleteAPIs();
     }
 
     /**
@@ -35,7 +35,7 @@ public class StringBuilderTest {
 
         char[] carr = new char[4];
         sbuilder.getChars(3, 7, carr, 0);
-        for (int i=0; i<carr.length; i++)
+        for (int i = 0; i < carr.length; i++)
             System.out.printf("carr[%d]=%c ", i, carr[i]);
         System.out.println();
 
@@ -102,17 +102,16 @@ public class StringBuilderTest {
         // 删除位置0的字符，剩余字符是“123456789”。
         sbuilder.deleteCharAt(0);
         // 删除位置3(包括)到位置6(不包括)之间的字符，剩余字符是“123789”。
-        sbuilder.delete(3,6);
+        sbuilder.delete(3, 6);
 
         // 获取sb中从位置1开始的字符串
         String str1 = sbuilder.substring(1);
         // 获取sb中从位置3(包括)到位置5(不包括)之间的字符串
         String str2 = sbuilder.substring(3, 5);
         // 获取sb中从位置3(包括)到位置5(不包括)之间的字符串，获取的对象是CharSequence对象，此处转型为String
-        String str3 = (String)sbuilder.subSequence(3, 5);
+        String str3 = (String) sbuilder.subSequence(3, 5);
 
-        System.out.printf("sbuilder=%s\nstr1=%s\nstr2=%s\nstr3=%s\n",
-                sbuilder, str1, str2, str3);
+        System.out.printf("sbuilder=%s\nstr1=%s\nstr2=%s\nstr3=%s\n", sbuilder, str1, str2, str3);
     }
 
     /**
@@ -125,9 +124,9 @@ public class StringBuilderTest {
         StringBuilder sbuilder = new StringBuilder();
 
         // 在位置0处插入字符数组
-        sbuilder.insert(0, new char[]{'a','b','c','d','e'});
+        sbuilder.insert(0, new char[] { 'a', 'b', 'c', 'd', 'e' });
         // 在位置0处插入字符数组。0表示字符数组起始位置，3表示长度
-        sbuilder.insert(0, new char[]{'A','B','C','D','E'}, 0, 3);
+        sbuilder.insert(0, new char[] { 'A', 'B', 'C', 'D', 'E' }, 0, 3);
         // 在位置0处插入float
         sbuilder.insert(0, 1.414f);
         // 在位置0处插入double
@@ -174,9 +173,9 @@ public class StringBuilderTest {
         StringBuilder sbuilder = new StringBuilder();
 
         // 追加字符数组
-        sbuilder.append(new char[]{'a','b','c','d','e'});
+        sbuilder.append(new char[] { 'a', 'b', 'c', 'd', 'e' });
         // 追加字符数组。0表示字符数组起始位置，3表示长度
-        sbuilder.append(new char[]{'A','B','C','D','E'}, 0, 3);
+        sbuilder.append(new char[] { 'A', 'B', 'C', 'D', 'E' }, 0, 3);
         // 追加float
         sbuilder.append(1.414f);
         // 追加double
@@ -212,10 +211,10 @@ public class StringBuilderTest {
         sbuilder.append('\n');
 
         // 追加unicode编码
-        sbuilder.appendCodePoint(0x5b57);    // 0x5b57是“字”的unicode编码
-        sbuilder.appendCodePoint(0x7b26);    // 0x7b26是“符”的unicode编码
-        sbuilder.appendCodePoint(0x7f16);    // 0x7f16是“编”的unicode编码
-        sbuilder.appendCodePoint(0x7801);    // 0x7801是“码”的unicode编码
+        sbuilder.appendCodePoint(0x5b57); // 0x5b57是“字”的unicode编码
+        sbuilder.appendCodePoint(0x7b26); // 0x7b26是“符”的unicode编码
+        sbuilder.appendCodePoint(0x7f16); // 0x7f16是“编”的unicode编码
+        sbuilder.appendCodePoint(0x7801); // 0x7801是“码”的unicode编码
 
         System.out.printf("%s\n\n", sbuilder);
     }

@@ -20,7 +20,6 @@ public class LocaleTest {
         testAllLocales();
     }
 
-
     /**
      *  2种不同的Locale的创建方法
      */
@@ -48,8 +47,8 @@ public class LocaleTest {
         Locale[] ls = Locale.getAvailableLocales();
 
         System.out.print("All Locales: ");
-        for (Locale locale:ls) {
-            System.out.printf(locale+", ");
+        for (Locale locale : ls) {
+            System.out.printf(locale + ", ");
         }
         System.out.println();
     }

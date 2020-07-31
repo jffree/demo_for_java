@@ -17,7 +17,7 @@ public class LocalDateTimeTest {
         durationAndPeriodTest();
     }
 
-    public static void printTest(){
+    public static void printTest() {
         LocalDate d = LocalDate.now(); // 当前日期
         LocalTime t = LocalTime.now(); // 当前时间
         LocalDateTime dt = LocalDateTime.now(); // 当前日期和时间
@@ -26,7 +26,7 @@ public class LocalDateTimeTest {
         System.out.println(dt); // 严格按照ISO 8601格式打印
     }
 
-    public static void convertTest(){
+    public static void convertTest() {
         LocalDateTime dt = LocalDateTime.now(); // 当前日期和时间
         LocalDate d = dt.toLocalDate(); // 转换到当前日期
         LocalTime t = dt.toLocalTime(); // 转换到当前时间
@@ -35,7 +35,7 @@ public class LocalDateTimeTest {
         System.out.println(dt); // 严格按照ISO 8601格式打印
     }
 
-    public static void parseTest(){
+    public static void parseTest() {
         LocalDateTime dt = LocalDateTime.parse("2019-11-19T15:16:17");
         LocalDate d = LocalDate.parse("2019-11-19");
         LocalTime t = LocalTime.parse("15:16:17");
@@ -44,7 +44,7 @@ public class LocalDateTimeTest {
         System.out.println(dt); // 严格按照ISO 8601格式打印
     }
 
-    public static void mathTest(){
+    public static void mathTest() {
         LocalDateTime dt = LocalDateTime.of(2019, 10, 26, 20, 30, 59);
         System.out.println(dt);
         // 加5天减3小时:
@@ -62,7 +62,7 @@ public class LocalDateTimeTest {
         System.out.println(dt5); // 2019-09-30T20:30:59
     }
 
-    public static void formatTest(){
+    public static void formatTest() {
         // 自定义格式化:
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         System.out.println(dtf.format(LocalDateTime.now()));
@@ -72,7 +72,7 @@ public class LocalDateTimeTest {
         System.out.println(dt2);
     }
 
-    public static void adjustTest(){
+    public static void adjustTest() {
         // 本月第一天0:00时刻:
         LocalDateTime firstDay = LocalDate.now().withDayOfMonth(1).atStartOfDay();
         System.out.println(firstDay);
@@ -90,7 +90,7 @@ public class LocalDateTimeTest {
         System.out.println(firstWeekday);
     }
 
-    public static void compareTest(){
+    public static void compareTest() {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime target = LocalDateTime.of(2019, 11, 19, 8, 15, 0);
         System.out.println(now.isBefore(target));
@@ -98,7 +98,7 @@ public class LocalDateTimeTest {
         System.out.println(LocalTime.now().isAfter(LocalTime.parse("08:15:00")));
     }
 
-    public static void durationAndPeriodTest(){
+    public static void durationAndPeriodTest() {
         LocalDateTime start = LocalDateTime.of(2019, 11, 19, 8, 15, 0);
         LocalDateTime end = LocalDateTime.of(2020, 1, 9, 19, 25, 30);
         Duration d = Duration.between(start, end);

@@ -16,12 +16,12 @@ public class PrintWriterTest {
 
         // 下面3个函数的作用都是一样：都是将字母“abcde”写入到文件“file.txt”中。
         // 任选一个执行即可！
-        testPrintWriterConstrutor1() ;
+        testPrintWriterConstrutor1();
         //testPrintWriterConstrutor2() ;
         //testPrintWriterConstrutor3() ;
 
         // 测试write(), print(), println(), printf()等接口。
-        testPrintWriterAPIS() ;
+        testPrintWriterAPIS();
     }
 
     /**
@@ -30,13 +30,12 @@ public class PrintWriterTest {
      * 函数的作用，就是将字母“abcde”写入到文件“file.txt”中
      */
     private static void testPrintWriterConstrutor1() {
-        final char[] arr={'a', 'b', 'c', 'd', 'e' };
+        final char[] arr = { 'a', 'b', 'c', 'd', 'e' };
         try {
             // 创建文件“file.txt”的File对象
             File file = new File("e:\\github\\test-file\\test.txt");
             // 创建文件对应FileOutputStream
-            PrintWriter out = new PrintWriter(
-                    new FileOutputStream(file));
+            PrintWriter out = new PrintWriter(new FileOutputStream(file));
             // 将“字节数组arr”全部写入到输出流中
             out.write(arr);
             // 关闭输出流
@@ -52,7 +51,7 @@ public class PrintWriterTest {
      * 函数的作用，就是将字母“abcde”写入到文件“file.txt”中
      */
     private static void testPrintWriterConstrutor2() {
-        final char[] arr={'a', 'b', 'c', 'd', 'e' };
+        final char[] arr = { 'a', 'b', 'c', 'd', 'e' };
         try {
             File file = new File("e:\\github\\test-file\\test.txt");
             PrintWriter out = new PrintWriter(file);
@@ -69,7 +68,7 @@ public class PrintWriterTest {
      * 函数的作用，就是将字母“abcde”写入到文件“file.txt”中
      */
     private static void testPrintWriterConstrutor3() {
-        final char[] arr={'a', 'b', 'c', 'd', 'e' };
+        final char[] arr = { 'a', 'b', 'c', 'd', 'e' };
         try {
             PrintWriter out = new PrintWriter("e:\\github\\test-file\\test.txt");
             out.write(arr);
@@ -83,7 +82,7 @@ public class PrintWriterTest {
      * 测试write(), print(), println(), printf()等接口。
      */
     private static void testPrintWriterAPIS() {
-        final char[] arr={'a', 'b', 'c', 'd', 'e' };
+        final char[] arr = { 'a', 'b', 'c', 'd', 'e' };
         try {
             // 创建文件对应FileOutputStream
             PrintWriter out = new PrintWriter("other.txt");

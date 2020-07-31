@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class FileReaderWriterTest {
 
-    private static final String FileName = "e:\\github\\test-file\\test.txt";
+    private static final String FileName    = "e:\\github\\test-file\\test.txt";
     private static final String CharsetName = "utf-8";
 
     public static void main(String[] args) {
@@ -39,7 +39,7 @@ public class FileReaderWriterTest {
 
             out1.close();
 
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -55,8 +55,8 @@ public class FileReaderWriterTest {
             FileReader in1 = new FileReader(file);
 
             // 测试read()，从中读取一个字符
-            char c1 = (char)in1.read();
-            System.out.println("c1="+c1);
+            char c1 = (char) in1.read();
+            System.out.println("c1=" + c1);
 
             // 测试skip(long byteCount)，跳过4个字符
             in1.skip(6);
@@ -64,10 +64,10 @@ public class FileReaderWriterTest {
             // 测试read(char[] cbuf, int off, int len)
             char[] buf = new char[10];
             in1.read(buf, 0, buf.length);
-            System.out.println("buf="+(new String(buf)));
+            System.out.println("buf=" + (new String(buf)));
 
             in1.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

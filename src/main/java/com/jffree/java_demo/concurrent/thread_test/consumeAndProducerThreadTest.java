@@ -17,8 +17,8 @@ public class consumeAndProducerThreadTest {
 // Demo1.java
 // 仓库
 class Depot {
-    private int capacity;    // 仓库的容量
-    private int size;        // 仓库的实际数量
+    private int capacity; // 仓库的容量
+    private int size;    // 仓库的实际数量
 
     public Depot(int capacity) {
         this.capacity = capacity;
@@ -36,11 +36,11 @@ class Depot {
                 // 获取“实际生产的数量”(即库存中新增的数量)
                 // 如果“库存”+“想要生产的数量”>“总的容量”，则“实际增量”=“总的容量”-“当前容量”。(此时填满仓库)
                 // 否则“实际增量”=“想要生产的数量”
-                int inc = (size+left)>capacity ? (capacity-size) : left;
+                int inc = (size + left) > capacity ? (capacity - size) : left;
                 size += inc;
                 left -= inc;
                 System.out.printf("%s produce(%3d) --> left=%3d, inc=%3d, size=%3d\n",
-                        Thread.currentThread().getName(), val, left, inc, size);
+                    Thread.currentThread().getName(), val, left, inc, size);
                 // 通知“消费者”可以消费了。
                 notifyAll();
             }
@@ -59,11 +59,11 @@ class Depot {
                 // 获取“实际消费的数量”(即库存中实际减少的数量)
                 // 如果“库存”<“客户要消费的数量”，则“实际消费量”=“库存”；
                 // 否则，“实际消费量”=“客户要消费的数量”。
-                int dec = (size<left) ? size : left;
+                int dec = (size < left) ? size : left;
                 size -= dec;
                 left -= dec;
                 System.out.printf("%s consume(%3d) <-- left=%3d, dec=%3d, size=%3d\n",
-                        Thread.currentThread().getName(), val, left, dec, size);
+                    Thread.currentThread().getName(), val, left, dec, size);
                 notifyAll();
             }
         } catch (InterruptedException e) {
@@ -71,7 +71,7 @@ class Depot {
     }
 
     public String toString() {
-        return "capacity:"+capacity+", actual size:"+size;
+        return "capacity:" + capacity + ", actual size:" + size;
     }
 }
 

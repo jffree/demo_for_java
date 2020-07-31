@@ -4,7 +4,7 @@ import java.util.StringJoiner;
 
 public class StringJoinerTest {
     public static void main(String[] args) {
-        String[] names = {"Bob", "Alice", "Grace"};
+        String[] names = { "Bob", "Alice", "Grace" };
         StringJoiner sj = new StringJoiner(", ", "Hello ", "!");
         for (String name : names) {
             sj.add(name);

@@ -10,12 +10,12 @@ import java.util.List;
 
 public class ReferenceTest {
 
-
     public static class MyDate extends Date {
 
         /** Creates a new instance of MyDate */
         public MyDate() {
         }
+
         // 覆盖finalize()方法
         protected void finalize() throws Throwable {
             super.finalize();
@@ -26,7 +26,6 @@ public class ReferenceTest {
             return "Date: " + this.getTime();
         }
     }
-
 
     //在运行下面的Java代码之前，需要先配置参数 -Xms2M -Xmx3M，将 JVM 的初始内存设为2M，最大可用内存为 3M。
     //每个测试需要单独进行，方能看出效果
@@ -51,7 +50,7 @@ public class ReferenceTest {
 
         System.gc(); //主动通知垃圾回收
 
-        for(int i=0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             Object obj = ((SoftReference) list.get(i)).get();
             System.out.println(obj);
         }
@@ -68,7 +67,7 @@ public class ReferenceTest {
 
         System.gc(); //主动通知垃圾回收
 
-        for(int i=0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             Object obj = ((WeakReference) list.get(i)).get();
             System.out.println(obj);
         }
@@ -85,8 +84,8 @@ public class ReferenceTest {
 
         System.gc(); //主动通知垃圾回收
 
-        for(int i=0; i < list.size(); i++){
-            Object obj = ((PhantomReference) list.get(i)).get();    //虚引用返回的永远都是空
+        for (int i = 0; i < list.size(); i++) {
+            Object obj = ((PhantomReference) list.get(i)).get(); //虚引用返回的永远都是空
             System.out.println(obj);
         }
     }

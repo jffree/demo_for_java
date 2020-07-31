@@ -12,7 +12,7 @@ public class BufferedReaderTest {
     private static final int LEN = 5;
 
     public static void main(String[] args) {
-        testBufferedReader() ;
+        testBufferedReader();
     }
 
     /**
@@ -23,12 +23,10 @@ public class BufferedReaderTest {
         // 创建BufferedReader字符流，内容是ArrayLetters数组
         try {
             File file = new File("e:\\github\\test-file\\test.txt");
-            BufferedReader in =
-                    new BufferedReader(
-                            new FileReader(file));
+            BufferedReader in = new BufferedReader(new FileReader(file));
 
             // 从字符流中读取5个字符。“abcde”
-            for (int i=0; i<LEN; i++) {
+            for (int i = 0; i < LEN; i++) {
                 // 若能继续读取下一个字符，则读取下一个字符
                 if (in.ready()) {
                     // 读取“字符流的下一个字符”
@@ -40,7 +38,7 @@ public class BufferedReaderTest {
             // 若“该字符流”不支持标记功能，则直接退出
             if (!in.markSupported()) {
                 System.out.println("make not supported!");
-                return ;
+                return;
             }
 
             // 标记“当前索引位置”，即标记第6个位置的元素--“f”

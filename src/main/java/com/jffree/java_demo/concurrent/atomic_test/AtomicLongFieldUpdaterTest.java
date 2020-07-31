@@ -13,21 +13,23 @@ public class AtomicLongFieldUpdaterTest {
 
         // 比较person的"id"属性，如果id的值为12345678L，则设置为1000。
         mAtoLong.compareAndSet(person, 12345678L, 1000);
-        System.out.println("id="+person.getId());
+        System.out.println("id=" + person.getId());
     }
 
     public static class Person {
         volatile long id;
+
         public Person(long id) {
             this.id = id;
         }
+
         public void setId(long id) {
             this.id = id;
         }
+
         public long getId() {
             return id;
         }
     }
 
 }
-

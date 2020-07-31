@@ -12,7 +12,7 @@ public class HashSetTest {
 
     public static void main(String[] args) {
         // HashSet常用API
-        testHashSetAPIs() ;
+        testHashSetAPIs();
     }
 
     /*
@@ -40,8 +40,8 @@ public class HashSetTest {
         set.remove("e");
 
         // 将Set转换为数组
-        String[] arr = (String[])set.toArray(new String[0]);
-        for (String str:arr)
+        String[] arr = (String[]) set.toArray(new String[0]);
+        for (String str : arr)
             System.out.printf("for each : %s\n", str);
 
         // 新建一个包含b、c、f的HashSet
@@ -51,30 +51,28 @@ public class HashSetTest {
         otherset.add("f");
 
         // 克隆一个removeset，内容和set一模一样
-        HashSet removeset = (HashSet)set.clone();
+        HashSet removeset = (HashSet) set.clone();
         // 删除“removeset中，属于otherSet的元素”
         removeset.removeAll(otherset);
         // 打印removeset
         System.out.printf("removeset : %s\n", removeset);
 
         // 克隆一个retainset，内容和set一模一样
-        HashSet retainset = (HashSet)set.clone();
+        HashSet retainset = (HashSet) set.clone();
         // 保留“retainset中，属于otherSet的元素”
         retainset.retainAll(otherset);
         // 打印retainset
         System.out.printf("retainset : %s\n", retainset);
 
-
         // 遍历HashSet
-        for(Iterator iterator = set.iterator();
-            iterator.hasNext(); )
+        for (Iterator iterator = set.iterator(); iterator.hasNext();)
             System.out.printf("iterator : %s\n", iterator.next());
 
         // 清空HashSet
         set.clear();
 
         // 输出HashSet是否为空
-        System.out.printf("%s\n", set.isEmpty()?"set is empty":"set is not empty");
+        System.out.printf("%s\n", set.isEmpty() ? "set is empty" : "set is not empty");
     }
 
 }

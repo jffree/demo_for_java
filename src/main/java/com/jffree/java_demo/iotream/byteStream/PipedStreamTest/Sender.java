@@ -11,31 +11,32 @@ public class Sender extends Thread {
     private PipedOutputStream out = new PipedOutputStream();
 
     // 获得“管道输出流”对象
-    public PipedOutputStream getOutputStream(){
+    public PipedOutputStream getOutputStream() {
         return out;
     }
 
     @Override
-    public void run(){
+    public void run() {
         writeShortMessage();
         //writeLongMessage();
     }
 
     // 向“管道输出流”中写入一则较简短的消息："this is a short message"
     private void writeShortMessage() {
-        String strInfo = "this is a short message" ;
+        String strInfo = "this is a short message";
         try {
             out.write(strInfo.getBytes());
             out.close();
-        } catch ( IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     // 向“管道输出流”中写入一则较长的消息
     private void writeLongMessage() {
         StringBuilder sb = new StringBuilder();
         // 通过for循环写入1020个字节
-        for (int i=0; i<102; i++)
+        for (int i = 0; i < 102; i++)
             sb.append("0123456789");
         // 再写入26个字节。
         sb.append("abcdefghijklmnopqrstuvwxyz");

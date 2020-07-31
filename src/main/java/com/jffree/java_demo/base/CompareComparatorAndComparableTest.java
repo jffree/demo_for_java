@@ -15,7 +15,7 @@ import java.lang.Comparable;
  *   综上所述：Comparable是内部比较器，而Comparator是外部比较器。
  *   一个类本身实现了Comparable比较器，就意味着它本身支持排序；若它本身没实现Comparable，也可以通过外部比较器Comparator进行排序。
  */
-public class CompareComparatorAndComparableTest{
+public class CompareComparatorAndComparableTest {
 
     public static void main(String[] args) {
         // 新建ArrayList(动态数组)
@@ -69,8 +69,8 @@ public class CompareComparatorAndComparableTest{
      * @desc Person类。
      *       Person实现了Comparable接口，这意味着Person本身支持排序
      */
-    private static class Person implements Comparable<Person>{
-        int age;
+    private static class Person implements Comparable<Person> {
+        int    age;
         String name;
 
         public Person(String name, int age) {
@@ -87,7 +87,7 @@ public class CompareComparatorAndComparableTest{
         }
 
         public String toString() {
-            return name + " - " +age;
+            return name + " - " + age;
         }
 
         /**

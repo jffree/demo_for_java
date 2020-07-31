@@ -3,7 +3,7 @@ package com.jffree.java_demo.concurrent.atomic_test;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class AtomicLongTest {
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         // 新建AtomicLong对象
         AtomicLong mAtoLong = new AtomicLong();

@@ -28,7 +28,7 @@ public class TreeSetTest {
         tSet.add("eee");
         tSet.add("ddd");
         tSet.add("ccc");
-        System.out.println("TreeSet:"+tSet);
+        System.out.println("TreeSet:" + tSet);
 
         // 打印TreeSet的实际大小
         System.out.printf("size : %d\n", tSet.size());
@@ -55,34 +55,33 @@ public class TreeSetTest {
         System.out.printf("tailSet(ccc, true): %s\n", tSet.tailSet("ccc", true));
         System.out.printf("tailSet(ccc, false): %s\n", tSet.tailSet("ccc", false));
 
-
         // 删除“ccc”
         tSet.remove("ccc");
         // 将Set转换为数组
-        String[] arr = (String[])tSet.toArray(new String[0]);
-        for (String str:arr)
+        String[] arr = (String[]) tSet.toArray(new String[0]);
+        for (String str : arr)
             System.out.printf("for each : %s\n", str);
 
         // 打印TreeSet
         System.out.printf("TreeSet:%s\n", tSet);
 
         // 遍历TreeSet
-        for(Iterator iter = tSet.iterator(); iter.hasNext(); ) {
+        for (Iterator iter = tSet.iterator(); iter.hasNext();) {
             System.out.printf("iter : %s\n", iter.next());
         }
 
         // 删除并返回第一个元素
-        val = (String)tSet.pollFirst();
+        val = (String) tSet.pollFirst();
         System.out.printf("pollFirst=%s, set=%s\n", val, tSet);
 
         // 删除并返回最后一个元素
-        val = (String)tSet.pollLast();
+        val = (String) tSet.pollLast();
         System.out.printf("pollLast=%s, set=%s\n", val, tSet);
 
         // 清空HashSet
         tSet.clear();
 
         // 输出HashSet是否为空
-        System.out.printf("%s\n", tSet.isEmpty()?"set is empty":"set is not empty");
+        System.out.printf("%s\n", tSet.isEmpty() ? "set is empty" : "set is not empty");
     }
 }

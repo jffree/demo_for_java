@@ -16,20 +16,20 @@ public class CalendarTest {
 
     public static void main(String[] args) {
 
-/*        // 测试Calendar的“17个字段的公共函数接口”
-        testAllCalendarSections() ;
+        /*        // 测试Calendar的“17个字段的公共函数接口”
+                testAllCalendarSections() ;
 
-        // 测试Calendar的“比较接口”
-        testComparatorAPIs() ;
+                // 测试Calendar的“比较接口”
+                testComparatorAPIs() ;
 
-        // 测试Calendar的“比较接口”
-        testLenientAPIs() ;
+                // 测试Calendar的“比较接口”
+                testLenientAPIs() ;
 
-        // 测试Calendar的Date、TimeZone、MilliSecond等相关函数
-        testTimeAPIs() ;
+                // 测试Calendar的Date、TimeZone、MilliSecond等相关函数
+                testTimeAPIs() ;
 
-        // 测试Calendar的clone()，getFirstDayOfWeek()等接口
-        testOtherAPIs() ;*/
+                // 测试Calendar的clone()，getFirstDayOfWeek()等接口
+                testOtherAPIs() ;*/
 
         // 当前时间:
         Calendar c = Calendar.getInstance();
@@ -64,7 +64,6 @@ public class CalendarTest {
 
     }
 
-
     /**
      * 测试“Calendar的字段”
      *
@@ -78,11 +77,11 @@ public class CalendarTest {
         final Random random = new Random();
         final Date date = cal.getTime();
 
-        final int min = cal.getMinimum(field);    // 获取"字段最小值"
-        final int max = cal.getMaximum(field);    // 获取“字段最大值”
+        final int min = cal.getMinimum(field); // 获取"字段最小值"
+        final int max = cal.getMaximum(field); // 获取“字段最大值”
 
-        final int actualMin = cal.getActualMinimum(field);    // 获取"当前日期下，该字段最小值"
-        final int actualMax = cal.getActualMaximum(field);    // 获取“当前日期下，该字段的最大值”
+        final int actualMin = cal.getActualMinimum(field); // 获取"当前日期下，该字段最小值"
+        final int actualMax = cal.getActualMaximum(field); // 获取“当前日期下，该字段的最大值”
 
         // 获取“字段的当前值”
         final int ori = cal.get(field);
@@ -102,7 +101,7 @@ public class CalendarTest {
         final int roll = cal.get(field);
 
         // 获取一个随机值
-        final int sign = ( random.nextInt(2) == 1) ? 1 : -1;
+        final int sign = (random.nextInt(2) == 1) ? 1 : -1;
         final int r2 = sign * random.nextInt(max);
         try {
             // 增加“字段的当前值” ，并获取“新的当前字段值”
@@ -114,11 +113,10 @@ public class CalendarTest {
         }
         final int add = cal.get(field);
 
-
-
         // 打印字段信息
-        System.out.printf("%s:\n\trange is [%d - %d] actualRange is [%d - %d].  original=%d, set(%d)=%d, roll(%d)=%d, add(%d)=%d\n",
-                title, min, max, actualMin, actualMax, ori, r1, set, -max, roll, r2, add);
+        System.out.printf(
+            "%s:\n\trange is [%d - %d] actualRange is [%d - %d].  original=%d, set(%d)=%d, roll(%d)=%d, add(%d)=%d\n",
+            title, min, max, actualMin, actualMax, ori, r1, set, -max, roll, r2, add);
     }
 
     /**
@@ -176,7 +174,7 @@ public class CalendarTest {
         Calendar cal2 = Calendar.getInstance();
         cal2.set(Calendar.YEAR, 2000);
         // 新建cal3, 为cal1的克隆对象
-        Calendar cal3 = (Calendar)cal1.clone();
+        Calendar cal3 = (Calendar) cal1.clone();
 
         // equals 判断 cal1和cal2的“时间、时区等”内容是否相等
         boolean isEqual12 = cal1.equals(cal2);
@@ -193,7 +191,7 @@ public class CalendarTest {
         int icompare = cal1.compareTo(cal2);
 
         System.out.printf("\ntestComparatorAPIs: isEuqal12=%s, isEqual13=%s, isBefore=%s, isAfter=%s, icompare=%s\n",
-                isEqual12, isEqual13, isBefore, isAfter, icompare);
+            isEqual12, isEqual13, isBefore, isAfter, icompare);
     }
 
     /**
@@ -223,8 +221,7 @@ public class CalendarTest {
             e.printStackTrace();
         }
 
-        System.out.printf("\ntestLenientAPIs: oriLenient=%s, curLenient=%s\n",
-                oriLenient, curLenient);
+        System.out.printf("\ntestLenientAPIs: oriLenient=%s, curLenient=%s\n", oriLenient, curLenient);
     }
 
     /**
@@ -255,8 +252,7 @@ public class CalendarTest {
         // 设置时间为“2000-10-10 10:10:10”
         cal.set(2000, 10, 10, 10, 10, 10);
 
-        System.out.printf("\ntestTimeAPIs: date=%s, timezone=%s, millis=%s\n",
-                date, timezone, millis);
+        System.out.printf("\ntestTimeAPIs: date=%s, timezone=%s, millis=%s\n", date, timezone, millis);
     }
 
     /**
@@ -267,7 +263,7 @@ public class CalendarTest {
     private static void testOtherAPIs() {
         Calendar cal = Calendar.getInstance();
         // 克隆cal
-        Calendar clone = (Calendar)cal.clone();
+        Calendar clone = (Calendar) cal.clone();
 
         // 设置 为 2013-01-10。
         // 注：2013-01-01 为“星期二”，2013-01-06为“星期天”，
@@ -292,6 +288,6 @@ public class CalendarTest {
         int firstdayOfWeek = clone.getFirstDayOfWeek();
 
         System.out.printf("\ntestOtherAPIs: firstdayOfWeek=%s, [minimalDay, WeekOfYear]={(%s, %s), (%s, %s)} %s\n",
-                firstdayOfWeek, m1, index1, m2, index2, clone.getTime());
+            firstdayOfWeek, m1, index1, m2, index2, clone.getTime());
     }
 }

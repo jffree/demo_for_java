@@ -15,9 +15,9 @@ public class FileInputStreamTest {
             try {
                 size = fis.available();
                 System.out.println("可读取的字节数 " + size);
-                char [] text = new char[size];
+                char[] text = new char[size];
                 for (int i = 0; i < text.length; i++) {
-                    text[i] = ((char)fis.read());
+                    text[i] = ((char) fis.read());
                     System.out.print(text[i]);
                 }
             } catch (IOException e) {
@@ -28,7 +28,7 @@ public class FileInputStreamTest {
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }finally{
+        } finally {
             try {
                 fis.close();
             } catch (IOException e) {
@@ -36,8 +36,6 @@ public class FileInputStreamTest {
                 e.printStackTrace();
             }
         }
-
-
 
     }
 }

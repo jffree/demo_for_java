@@ -12,9 +12,9 @@ import java.lang.Math;
  * @author skywang
  * @email kuiwu-wang@163.com
  */
-public class RandomTest{
+public class RandomTest {
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
 
         // 通过System的currentTimeMillis()返回随机数
         testSystemTimeMillis();
@@ -37,11 +37,10 @@ public class RandomTest{
         // 通过
         final long l = System.currentTimeMillis();
         // 通过l获取一个[0, 100)之间的整数
-        final int i = (int)( l % 100 );
+        final int i = (int) (l % 100);
 
         System.out.printf("\n---- System.currentTimeMillis() ----\n l=%s i=%s\n", l, i);
     }
-
 
     /**
      * 返回随机数-02：测试Math的random()
@@ -50,11 +49,10 @@ public class RandomTest{
         // 通过Math的random()函数返回一个double类型随机数，范围[0.0, 1.0)
         final double d = Math.random();
         // 通过d获取一个[0, 100)之间的整数
-        final int i = (int)(d*100);
+        final int i = (int) (d * 100);
 
         System.out.printf("\n---- Math.random() ----\n d=%s i=%s\n", d, i);
     }
-
 
     /**
      * 返回随机数-03：测试Random的API
@@ -80,9 +78,9 @@ public class RandomTest{
         // 获取随机的long值
         long l = random.nextLong();
 
-        System.out.printf("\n---- %s ----\nb=%s, d=%s, f=%s, i1=%s, i2=%s, g=%s, l=%s, buf=[",
-                title, b, d, f, i1, i2, g, l);
-        for (byte bt:buf)
+        System.out.printf("\n---- %s ----\nb=%s, d=%s, f=%s, i1=%s, i2=%s, g=%s, l=%s, buf=[", title, b, d, f, i1, i2,
+            g, l);
+        for (byte bt : buf)
             System.out.printf("%s, ", bt);
         System.out.println("]");
     }

@@ -7,7 +7,7 @@ public class BufferedInputStreamTest {
     private static final int LEN = 5;
 
     public static void main(String[] args) {
-        testBufferedInputStream() ;
+        testBufferedInputStream();
     }
 
     /**
@@ -21,12 +21,10 @@ public class BufferedInputStreamTest {
         // 创建BufferedInputStream字节流，内容是ArrayLetters数组
         try {
             File file = new File("e:\\github\\test-file\\test.txt");
-            InputStream in =
-                    new BufferedInputStream(
-                            new FileInputStream(file), 512);
+            InputStream in = new BufferedInputStream(new FileInputStream(file), 512);
 
             // 从字节流中读取5个字节。“abcde”，a对应0x61，b对应0x62，依次类推...
-            for (int i=0; i<LEN; i++) {
+            for (int i = 0; i < LEN; i++) {
                 // 若能继续读取下一个字节，则读取下一个字节
                 if (in.available() >= 0) {
                     // 读取“字节流的下一个字节”
@@ -38,7 +36,7 @@ public class BufferedInputStreamTest {
             // 若“该字节流”不支持标记功能，则直接退出
             if (!in.markSupported()) {
                 System.out.println("make not supported!");
-                return ;
+                return;
             }
 
             // 标记“当前索引位置”，即标记第6个位置的元素--“f”

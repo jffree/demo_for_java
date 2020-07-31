@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public class EqualsDemo {
 
-    public static  class Employee {
+    public static class Employee {
 
         private String name;
         private double salary;
-        private Date hireDay;
+        private Date   hireDay;
 
         public Employee(String name, double salary, Date hireDay) {
             this.name = name;
@@ -53,4 +53,3 @@ public class EqualsDemo {
     }
 
 }
-

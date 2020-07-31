@@ -7,7 +7,7 @@ import java.util.*;
  *
  * @author skywang
  */
-public class TreeMapTest  {
+public class TreeMapTest {
 
     public static void main(String[] args) {
         // 测试常用的API
@@ -35,12 +35,12 @@ public class TreeMapTest  {
 
         System.out.printf("\n ---- testTreeMapOridinaryAPIs ----\n");
         // 打印出TreeMap
-        System.out.printf("%s\n",tmap );
+        System.out.printf("%s\n", tmap);
 
         // 通过Iterator遍历key-value
         Iterator iter = tmap.entrySet().iterator();
-        while(iter.hasNext()) {
-            Map.Entry entry = (Map.Entry)iter.next();
+        while (iter.hasNext()) {
+            Map.Entry entry = (Map.Entry) iter.next();
             System.out.printf("next : %s - %s\n", entry.getKey(), entry.getValue());
         }
 
@@ -48,24 +48,23 @@ public class TreeMapTest  {
         System.out.printf("size: %s\n", tmap.size());
 
         // containsKey(Object key) :是否包含键key
-        System.out.printf("contains key two : %s\n",tmap.containsKey("two"));
-        System.out.printf("contains key five : %s\n",tmap.containsKey("five"));
+        System.out.printf("contains key two : %s\n", tmap.containsKey("two"));
+        System.out.printf("contains key five : %s\n", tmap.containsKey("five"));
 
         // containsValue(Object value) :是否包含值value
-        System.out.printf("contains value 0 : %s\n",tmap.containsValue(new Integer(0)));
+        System.out.printf("contains value 0 : %s\n", tmap.containsValue(new Integer(0)));
 
         // remove(Object key) ： 删除键key对应的键值对
         tmap.remove("three");
 
-        System.out.printf("tmap:%s\n",tmap );
+        System.out.printf("tmap:%s\n", tmap);
 
         // clear() ： 清空TreeMap
         tmap.clear();
 
         // isEmpty() : TreeMap是否为空
-        System.out.printf("%s\n", (tmap.isEmpty()?"tmap is empty":"tmap is not empty") );
+        System.out.printf("%s\n", (tmap.isEmpty() ? "tmap is empty" : "tmap is not empty"));
     }
-
 
     /**
      * 测试TreeMap的子Map函数
@@ -99,14 +98,10 @@ public class TreeMapTest  {
         // 测试 subMap(K fromKey, K toKey)
         System.out.printf("tmap.subMap(\"a\", \"c\"):\n\t%s\n", tmap.subMap("a", "c"));
         // 测试
-        System.out.printf("tmap.subMap(\"a\", true, \"c\", true):\n\t%s\n",
-                tmap.subMap("a", true, "c", true));
-        System.out.printf("tmap.subMap(\"a\", true, \"c\", false):\n\t%s\n",
-                tmap.subMap("a", true, "c", false));
-        System.out.printf("tmap.subMap(\"a\", false, \"c\", true):\n\t%s\n",
-                tmap.subMap("a", false, "c", true));
-        System.out.printf("tmap.subMap(\"a\", false, \"c\", false):\n\t%s\n",
-                tmap.subMap("a", false, "c", false));
+        System.out.printf("tmap.subMap(\"a\", true, \"c\", true):\n\t%s\n", tmap.subMap("a", true, "c", true));
+        System.out.printf("tmap.subMap(\"a\", true, \"c\", false):\n\t%s\n", tmap.subMap("a", true, "c", false));
+        System.out.printf("tmap.subMap(\"a\", false, \"c\", true):\n\t%s\n", tmap.subMap("a", false, "c", true));
+        System.out.printf("tmap.subMap(\"a\", false, \"c\", false):\n\t%s\n", tmap.subMap("a", false, "c", false));
 
         // 测试 navigableKeySet()
         System.out.printf("tmap.navigableKeySet():\n\t%s\n", tmap.navigableKeySet());
@@ -132,22 +127,22 @@ public class TreeMapTest  {
         System.out.printf("Whole list:%s%n", nav);
 
         // 获取第一个key、第一个Entry
-        System.out.printf("First key: %s\tFirst entry: %s%n",nav.firstKey(), nav.firstEntry());
+        System.out.printf("First key: %s\tFirst entry: %s%n", nav.firstKey(), nav.firstEntry());
 
         // 获取最后一个key、最后一个Entry
-        System.out.printf("Last key: %s\tLast entry: %s%n",nav.lastKey(), nav.lastEntry());
+        System.out.printf("Last key: %s\tLast entry: %s%n", nav.lastKey(), nav.lastEntry());
 
         // 获取“小于/等于bbb”的最大键值对
-        System.out.printf("Key floor before bbb: %s%n",nav.floorKey("bbb"));
+        System.out.printf("Key floor before bbb: %s%n", nav.floorKey("bbb"));
 
         // 获取“小于bbb”的最大键值对
         System.out.printf("Key lower before bbb: %s%n", nav.lowerKey("bbb"));
 
         // 获取“大于/等于bbb”的最小键值对
-        System.out.printf("Key ceiling after ccc: %s%n",nav.ceilingKey("ccc"));
+        System.out.printf("Key ceiling after ccc: %s%n", nav.ceilingKey("ccc"));
 
         // 获取“大于bbb”的最小键值对
-        System.out.printf("Key higher after ccc: %s%n\n",nav.higherKey("ccc"));
+        System.out.printf("Key higher after ccc: %s%n\n", nav.higherKey("ccc"));
     }
 
 }
