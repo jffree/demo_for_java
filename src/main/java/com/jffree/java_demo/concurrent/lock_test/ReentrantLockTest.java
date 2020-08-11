@@ -65,8 +65,9 @@ public class ReentrantLockTest {
                 int left = val;
                 while (left > 0) {
                     // 库存为0时，等待“生产者”生产产品。
-                    while (size <= 0)
+                    while (size <= 0) {
                         emptyCondtion.await();
+                    }
                     // 获取“实际消费的数量”(即库存中实际减少的数量)
                     // 如果“库存”<“客户要消费的数量”，则“实际消费量”=“库存”；
                     // 否则，“实际消费量”=“客户要消费的数量”。
