@@ -18,80 +18,83 @@ public class ReadWriteLockTest {
             user.setCash((i+1)*1000);
         }
     }
-}
 
-class User {
-    private String name;            //用户名
-    private MyCount myCount;        //所要操作的账户
-    private ReadWriteLock myLock;   //执行操作所需的锁对象
+    private static class User {
+        private String name;            //用户名
+        private MyCount myCount;        //所要操作的账户
+        private ReadWriteLock myLock;   //执行操作所需的锁对象
 
-    User(String name, MyCount myCount) {
-        this.name = name;
-        this.myCount = myCount;
-        this.myLock = new ReentrantReadWriteLock();
-    }
+        User(String name, MyCount myCount) {
+            this.name = name;
+            this.myCount = myCount;
+            this.myLock = new ReentrantReadWriteLock();
+        }
 
-    public void getCash() {
-        new Thread() {
-            @Override
-            public void run() {
-                myLock.readLock().lock();
-                try {
-                    System.out.println(Thread.currentThread().getName() +" getCash start");
-                    myCount.getCash();
-                    Thread.sleep(2000);
-                    System.out.println(Thread.currentThread().getName() +" getCash end");
-                } catch (InterruptedException e) {
-                } finally {
-                    myLock.readLock().unlock();
+        public void getCash() {
+            new Thread() {
+                @Override
+                public void run() {
+                    myLock.readLock().lock();
+                    try {
+                        System.out.println(Thread.currentThread().getName() +" getCash start");
+                        myCount.getCash();
+                        Thread.sleep(2000);
+                        System.out.println(Thread.currentThread().getName() +" getCash end");
+                    } catch (InterruptedException e) {
+                    } finally {
+                        myLock.readLock().unlock();
+                    }
                 }
-            }
-        }.start();
-    }
+            }.start();
+        }
 
-    public void setCash(final int cash) {
-        new Thread() {
-            @Override
-            public void run() {
-                myLock.writeLock().lock();
-                try {
-                    System.out.println(Thread.currentThread().getName() +" setCash start");
-                    myCount.setCash(cash);
-                    Thread.sleep(1000);
-                    System.out.println(Thread.currentThread().getName() +" setCash end");
-                } catch (InterruptedException e) {
-                } finally {
-                    myLock.writeLock().unlock();
+        public void setCash(final int cash) {
+            new Thread() {
+                @Override
+                public void run() {
+                    myLock.writeLock().lock();
+                    try {
+                        System.out.println(Thread.currentThread().getName() +" setCash start");
+                        myCount.setCash(cash);
+                        Thread.sleep(1000);
+                        System.out.println(Thread.currentThread().getName() +" setCash end");
+                    } catch (InterruptedException e) {
+                    } finally {
+                        myLock.writeLock().unlock();
+                    }
                 }
-            }
-        }.start();
+            }.start();
+        }
+    }
+
+    private static class MyCount {
+        private String id;         //账号
+        private int    cash;       //账户余额
+
+        MyCount(String id, int cash) {
+            this.id = id;
+            this.cash = cash;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public int getCash() {
+            System.out.println(Thread.currentThread().getName() +" getCash cash="+ cash);
+            return cash;
+        }
+
+        public void setCash(int cash) {
+            System.out.println(Thread.currentThread().getName() +" setCash cash="+ cash);
+            this.cash = cash;
+        }
     }
 }
 
-class MyCount {
-    private String id;         //账号
-    private int    cash;       //账户余额
 
-    MyCount(String id, int cash) {
-        this.id = id;
-        this.cash = cash;
-    }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public int getCash() {
-        System.out.println(Thread.currentThread().getName() +" getCash cash="+ cash);
-        return cash;
-    }
-
-    public void setCash(int cash) {
-        System.out.println(Thread.currentThread().getName() +" setCash cash="+ cash);
-        this.cash = cash;
-    }
-}
