@@ -1,6 +1,6 @@
 package com.jffree.java_demo.network_model.reactor_with_multiHandler;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -12,13 +12,13 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 final public class Handler implements Runnable {
-    private SocketChannel      socket;
-    private SelectionKey       sk;
-    private Selector           selector;
-    private ByteBuffer         input    = ByteBuffer.allocate(1000);
-    private ByteBuffer         output   = ByteBuffer.allocate(1000);               ;
-    private ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 4, 5, TimeUnit.SECONDS,
-                                            new LinkedBlockingDeque<Runnable>(4));
+    private final SocketChannel      socket;
+    private final SelectionKey       sk;
+    private final Selector           selector;
+    private final ByteBuffer         input    = ByteBuffer.allocate(1000);
+    private final ByteBuffer         output   = ByteBuffer.allocate(1000);               ;
+    private final static ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 4, 5, TimeUnit.SECONDS,
+                                            new LinkedBlockingDeque<Runnable>(40));
     private Sender             sender;
 
     public Handler(Selector sel, SocketChannel c) throws IOException {
@@ -31,6 +31,8 @@ final public class Handler implements Runnable {
         sel.wakeup();
     }
 
+
+    //sender 依然跟处理接受请求在同一个线程，根据 reactor 的模型，这里应该只有发送数据，而没有编解码处理
     public class Sender implements Runnable {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -42,6 +44,7 @@ final public class Handler implements Runnable {
                 try {
                     socket.write(output);
                     sk.attach(Handler.this);
+                    sk.interestOps(SelectionKey.OP_READ);
                 } catch (IOException e) {
                     e.printStackTrace();
                     sk.cancel();
@@ -94,8 +97,8 @@ final public class Handler implements Runnable {
         System.out.println(String.format("Server receive data form port %d : %s ", socket.socket().getPort(), s));
         if (sender == null) {
             sender = new Sender();
-            sk.interestOps(SelectionKey.OP_WRITE);
         }
+        sk.interestOps(SelectionKey.OP_WRITE);
         sk.attach(sender);
         selector.wakeup();
     }

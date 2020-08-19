@@ -14,7 +14,7 @@ final public class Handler implements Runnable {
     final private Selector      selector;
     final private ByteBuffer    input      = ByteBuffer.allocate(1000);
     final private ByteBuffer    output     = ByteBuffer.allocate(1000);
-    private boolean             bindSender = false;
+    private Sender sender;
 
     public Handler(Selector sel, SocketChannel c) throws IOException {
         selector = sel;
@@ -36,6 +36,7 @@ final public class Handler implements Runnable {
                 output.flip();
                 try {
                     socket.write(output);
+                    sk.interestOps(SelectionKey.OP_READ);
                     sk.attach(Handler.this);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -80,11 +81,11 @@ final public class Handler implements Runnable {
         input.clear();
         String s = new String(bytes);
         System.out.println(String.format("Server receive data form port %d : %s ", socket.socket().getPort(), s));
-        if (bindSender == false) {
-            sk.interestOps(SelectionKey.OP_WRITE);
-            sk.attach(new Sender());
+        if (sender == null) {
+            sender = new Sender();
         }
-
+        sk.interestOps(SelectionKey.OP_WRITE);
+        sk.attach(new Sender());
     }
 
     public void read() throws IOException {

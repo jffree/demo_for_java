@@ -99,6 +99,7 @@ public class NioClient extends Thread {
                     String s = new String(bytes);
                     System.out.println(String.format("Client %d received: %s", clientId, s));
                     sk.attach(sender);
+                    sk.interestOps(SelectionKey.OP_WRITE);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -123,9 +124,9 @@ public class NioClient extends Thread {
                     socketChannel.write(output);
                     if (reader == null) {
                         reader = new Reader();
-                        sk.interestOps(SelectionKey.OP_READ);
                     }
                     sk.attach(reader);
+                    sk.interestOps(SelectionKey.OP_READ);
                 } catch (IOException e) {
                     e.printStackTrace();
                     sk.cancel();

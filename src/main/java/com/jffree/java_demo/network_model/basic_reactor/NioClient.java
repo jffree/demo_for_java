@@ -3,7 +3,6 @@ package com.jffree.java_demo.network_model.basic_reactor;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
@@ -18,17 +17,17 @@ import java.util.stream.IntStream;
  */
 
 public class NioClient extends Thread {
-    private static AtomicInteger id     = new AtomicInteger();
-    private Selector             selector;
-    private SocketChannel        socketChannel;
-    private SelectionKey         sk;
+    private final static AtomicInteger id     = new AtomicInteger();
+    private final Selector             selector;
+    private final SocketChannel        socketChannel;
+    private final SelectionKey         sk;
     final private ByteBuffer     input  = ByteBuffer.allocate(1000);
     final private ByteBuffer     output = ByteBuffer.allocate(1000);
     private Reader               reader;
     private Sender               sender;
-    private int                  port;
-    private String               host;
-    private int                  clientId;
+    private final int                  port;
+    private final String               host;
+    private final int                  clientId;
 
     public NioClient(String host, int port) throws IOException {
         this.host = host;
@@ -98,6 +97,7 @@ public class NioClient extends Thread {
                     String s = new String(bytes);
                     System.out.println(String.format("Client %d received: %s", clientId, s));
                     sk.attach(sender);
+                    sk.interestOps(SelectionKey.OP_WRITE);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -159,7 +159,7 @@ public class NioClient extends Thread {
     }
 
     public static void main(String[] args) {
-        IntStream.range(1,8).forEach(i -> {
+        IntStream.range(1,2).forEach(i -> {
             try {
                 new NioClient("localhost", 6211).start();
             } catch (IOException e) {

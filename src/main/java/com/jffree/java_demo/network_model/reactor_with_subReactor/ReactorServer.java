@@ -3,19 +3,17 @@ package com.jffree.java_demo.network_model.reactor_with_subReactor;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.util.Set;
 
 /*
  * Ref: Scalable IO in Java
  */
 
 public class ReactorServer extends Reactor {
-    private ServerSocketChannel serverSocket;
-    private int                 port;
-    private String              host;
+    private final ServerSocketChannel serverSocket;
+    private final int                 port;
+    private final String              host;
     private Reactor[]           subReactors;
 
     public class Acceptor implements Runnable {
@@ -56,7 +54,7 @@ public class ReactorServer extends Reactor {
             subReactors = new Reactor[sub];
             for (int i = 0; i < sub; i++) {
                 subReactors[i] = new Reactor();
-                subReactors[i].start();
+                subReactors[i].start(); //启动子 reactor
             }
         }
     }
