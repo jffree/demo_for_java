@@ -1,7 +1,8 @@
 package com.jffree.java_demo.algorithm.tree;
 
 public class Node<T> {
-    private final T data;
+    private T data;
+    public Node<T> parent;
     public Node<T> left;
     public Node<T> right;
 
@@ -11,5 +12,16 @@ public class Node<T> {
 
     public T getData() {
         return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+            "data=" + data +
+            '}';
     }
 }
