@@ -3,7 +3,7 @@ package com.jffree.java_demo.algorithm.tree;
 import java.util.*;
 
 public class TreeSearchTest {
-    public Node createTree(){
+    public Node<String> createTree(){
         //https://stackoverflow.com/questions/26470972/trying-to-read-from-the-console-in-java
         //A\n B\n D\n \n F\n E\n \n \n C\n G\n \n H\n \n \n I\n \n \n \n \n
         Scanner in = new Scanner(System.in);
@@ -13,14 +13,14 @@ public class TreeSearchTest {
             return null;
         }
         else{
-            Node node = new Node(rawData);
+            Node<String> node = new Node<>(rawData);
             node.left = createTree();
             node.right = createTree();
             return node;
         }
     }
 
-    public Node createTree(List<String> input){
+    public Node<String> createTree(List<String> input){
         //将数组（顺序）存储形式转化为链表（链式）存储形式
         if(input == null || input.size() == 0){
             return null;
@@ -29,14 +29,14 @@ public class TreeSearchTest {
         if(data == null){
             return null;
         }
-        Node node = new Node(data);
+        Node<String> node = new Node<>(data);
         node.left = createTree(input);
         node.right = createTree(input);
         return node;
     }
 
     //深度优先 -> 先序遍历
-    public void preOrderTraverse(Node root){
+    public void preOrderTraverse(Node<String> root){
         if(root == null) return;
         System.out.print(root.getData());
         preOrderTraverse(root.left);
@@ -44,7 +44,7 @@ public class TreeSearchTest {
     }
 
     //深度优先 -> 中序遍历
-    public void inOrderTraverse(Node root){
+    public void inOrderTraverse(Node<String> root){
         if(root == null) return;
         inOrderTraverse(root.left);
         System.out.print(root.getData());
@@ -52,7 +52,7 @@ public class TreeSearchTest {
     }
 
     //深度优先 -> 后序遍历
-    public void postOrderTraverse(Node root){
+    public void postOrderTraverse(Node<String> root){
         if(root == null) return;
         postOrderTraverse(root.left);
         postOrderTraverse(root.right);
@@ -60,7 +60,7 @@ public class TreeSearchTest {
     }
 
     //深度优先 -> 使用栈先序遍历
-    public void preOrderStackTraverse(Node root){
+    public void preOrderStackTraverse(Node<String> root){
         Stack<Node> cache = new Stack<>();
         if (root == null)
             return;
@@ -74,7 +74,7 @@ public class TreeSearchTest {
     }
 
     //广度优先遍历
-    public void breadthFirstSearch(Node root){
+    public void breadthFirstSearch(Node<String> root){
         Queue<Node> cache = new ArrayDeque<>();
         if (root == null) return;
         cache.add(root);
@@ -91,7 +91,7 @@ public class TreeSearchTest {
         String[] data = {"A", "B", "D", null, null, "F", "E", null, null, null, "C", "G", null, "H", null, null, "I"};
         //https://stackoverflow.com/questions/7885573/remove-on-list-created-by-arrays-aslist-throws-unsupportedoperationexception
         List<String> list = new ArrayList<>(Arrays.asList(data));
-        Node root = createTree(list);
+        Node<String> root = createTree(list);
         System.out.println("Test preOrderTraverse: ");
         preOrderTraverse(root);
         System.out.println();

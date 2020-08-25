@@ -1,15 +1,15 @@
 package com.jffree.java_demo.algorithm.tree;
 
-public class Node {
-    private final String data;
-    public Node left;
-    public Node right;
+public class Node<T> {
+    private final T data;
+    public Node<T> left;
+    public Node<T> right;
 
-    public Node(String data) {
+    public Node(T data) {
         this.data = data;
     }
 
-    public String getData() {
+    public T getData() {
         return data;
     }
 }
