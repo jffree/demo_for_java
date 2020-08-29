@@ -73,6 +73,45 @@ public class TreeSearchTest {
         }
     }
 
+    //深度优先 -> 使用栈中序遍历
+    public void inOrderStackTraverse(Node<String> root){
+        if (root == null) return;
+        Stack<Node<String>> cache = new Stack<>();
+        Node tmp = root;
+        while(tmp !=null || !cache.isEmpty()){
+            while (tmp != null){
+                cache.push(tmp);
+                tmp = tmp.left;
+            }
+            tmp = cache.pop();
+            System.out.print(tmp.getData());
+            tmp = tmp.right;
+        }
+    }
+
+    //深度优先 -> 使用栈后序遍历
+    public void postOrderStackTraverse(Node<String> root){
+        if (root == null) return;
+        Stack<Node<String>> cache = new Stack<>();
+        Node tmp = root;
+        Node last = null;
+        while(tmp != null || !cache.isEmpty()){
+            while (tmp != null){
+                cache.push(tmp);
+                tmp = tmp.left;
+            }
+            tmp = cache.peek();
+            if(last == tmp.right || tmp.right == null){
+                last = cache.pop();
+                System.out.print(tmp.getData());
+                tmp = null;
+            }else{
+                tmp = tmp.right;
+            }
+        }
+    }
+
+
     //广度优先遍历
     public void breadthFirstSearch(Node<String> root){
         Queue<Node> cache = new ArrayDeque<>();
@@ -89,6 +128,7 @@ public class TreeSearchTest {
     public void test(){
         //这个数组也反映了，树以数组存储的形式
         String[] data = {"A", "B", "D", null, null, "F", "E", null, null, null, "C", "G", null, "H", null, null, "I"};
+        //https://img2020.cnblogs.com/blog/1542838/202008/1542838-20200809101414671-1310336891.png
         //https://stackoverflow.com/questions/7885573/remove-on-list-created-by-arrays-aslist-throws-unsupportedoperationexception
         List<String> list = new ArrayList<>(Arrays.asList(data));
         Node<String> root = createTree(list);
@@ -103,6 +143,12 @@ public class TreeSearchTest {
         System.out.println();
         System.out.println("Test preOrderStackTraverse: ");
         preOrderStackTraverse(root);
+        System.out.println();
+        System.out.println("Test inOrderStackTraverse: ");
+        inOrderStackTraverse(root);
+        System.out.println();
+        System.out.println("Test postOrderStackTraverse: ");
+        postOrderStackTraverse(root);
         System.out.println();
         System.out.println("Test breadthFirstSearch: ");
         breadthFirstSearch(root);
