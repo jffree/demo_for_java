@@ -8,6 +8,7 @@ public class CopyOnWriteArraySetTest {
     // TODO: set是HashSet对象时，程序会出错。
     //private static Set<String> set = new HashSet<String>();
     private static Set<String> set = new CopyOnWriteArraySet<String>();
+
     public static void main(String[] args) {
 
         // 同时启动两个线程对set进行操作！
@@ -18,9 +19,9 @@ public class CopyOnWriteArraySetTest {
     private static void printAll() {
         String value = null;
         Iterator iter = set.iterator();
-        while(iter.hasNext()) {
-            value = (String)iter.next();
-            System.out.print(value+", ");
+        while (iter.hasNext()) {
+            value = (String) iter.next();
+            System.out.print(value + ", ");
         }
         System.out.println();
     }
@@ -29,12 +30,13 @@ public class CopyOnWriteArraySetTest {
         MyThread(String name) {
             super(name);
         }
+
         @Override
         public void run() {
             int i = 0;
             while (i++ < 10) {
                 // “线程名” + "-" + "序号"
-                String val = Thread.currentThread().getName() + "-" + (i%6);
+                String val = Thread.currentThread().getName() + "-" + (i % 6);
                 set.add(val);
                 // 通过“Iterator”遍历set。
                 printAll();

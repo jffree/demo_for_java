@@ -12,14 +12,14 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 final public class Handler implements Runnable {
-    private SocketChannel      socket;
-    private SelectionKey       sk;
-    private Selector           selector;
-    private ByteBuffer         input    = ByteBuffer.allocate(1000);
-    private ByteBuffer         output   = ByteBuffer.allocate(1000);               ;
+    private SocketChannel             socket;
+    private SelectionKey              sk;
+    private Selector                  selector;
+    private ByteBuffer                input    = ByteBuffer.allocate(1000);
+    private ByteBuffer                output   = ByteBuffer.allocate(1000);                ;
     private static ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 4, 5, TimeUnit.SECONDS,
-                                            new LinkedBlockingDeque<Runnable>(40));
-    private Sender             sender;
+                                                   new LinkedBlockingDeque<Runnable>(40));
+    private Sender                    sender;
 
     public Handler(Selector sel, SocketChannel c) throws IOException {
         selector = sel;

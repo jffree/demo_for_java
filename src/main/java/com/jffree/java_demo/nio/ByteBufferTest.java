@@ -3,7 +3,7 @@ package com.jffree.java_demo.nio;
 import java.nio.ByteBuffer;
 
 public class ByteBufferTest {
-    public static void main(String args[]){
+    public static void main(String args[]) {
         //分配缓冲区（Allocating a Buffer）
         ByteBuffer buffer = ByteBuffer.allocate(33);
 
@@ -53,8 +53,7 @@ public class ByteBufferTest {
 
         System.out.println("-------------Test get-------------");
         buffer = ByteBuffer.allocate(32);
-        buffer.put((byte) 'a').put((byte) 'b').put((byte) 'c').put((byte) 'd')
-                .put((byte) 'e').put((byte) 'f');
+        buffer.put((byte) 'a').put((byte) 'b').put((byte) 'c').put((byte) 'd').put((byte) 'e').put((byte) 'f');
         System.out.println("before flip():       " + buffer);
         // 转换为读取模式
         buffer.flip();

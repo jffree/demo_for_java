@@ -4,16 +4,17 @@ import java.util.concurrent.CountDownLatch;
 
 public class CountDownLatchTest {
 
-    private static int LATCH_SIZE = 5;
+    private static int            LATCH_SIZE = 5;
     private static CountDownLatch doneSignal;
+
     public static void main(String[] args) {
 
         try {
             doneSignal = new CountDownLatch(LATCH_SIZE);
 
             // 新建5个任务
-            for(int i=0; i<LATCH_SIZE; i++){
-                new Thread( ) {
+            for (int i = 0; i < LATCH_SIZE; i++) {
+                new Thread() {
                     @Override
                     public void run() {
                         try {

@@ -14,7 +14,7 @@ public class ReactorServer extends Reactor {
     private final ServerSocketChannel serverSocket;
     private final int                 port;
     private final String              host;
-    private Reactor[]           subReactors;
+    private Reactor[]                 subReactors;
 
     public class Acceptor implements Runnable {
         int next = 0;

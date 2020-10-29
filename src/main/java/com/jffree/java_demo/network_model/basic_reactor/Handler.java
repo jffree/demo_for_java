@@ -12,9 +12,9 @@ final public class Handler implements Runnable {
     final private SocketChannel socket;
     final private SelectionKey  sk;
     final private Selector      selector;
-    final private ByteBuffer    input      = ByteBuffer.allocate(1000);
-    final private ByteBuffer    output     = ByteBuffer.allocate(1000);
-    private Sender sender;
+    final private ByteBuffer    input  = ByteBuffer.allocate(1000);
+    final private ByteBuffer    output = ByteBuffer.allocate(1000);
+    private Sender              sender;
 
     public Handler(Selector sel, SocketChannel c) throws IOException {
         selector = sel;

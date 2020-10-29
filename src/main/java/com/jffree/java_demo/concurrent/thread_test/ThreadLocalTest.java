@@ -2,23 +2,23 @@ package com.jffree.java_demo.concurrent.thread_test;
 
 import java.util.stream.IntStream;
 
-public class ThreadLocalTest implements Runnable{
-    public static ThreadLocal<String> data = new ThreadLocal<String>(){
-        @Override
-        protected String initialValue(){
-            return "Initial value: " + Thread.currentThread().getName();
-        }
-    };
+public class ThreadLocalTest implements Runnable {
+    public static ThreadLocal<String>  data  = new ThreadLocal<String>() {
+                                                 @Override
+                                                 protected String initialValue() {
+                                                     return "Initial value: " + Thread.currentThread().getName();
+                                                 }
+                                             };
 
-    private static ThreadLocal<String> data2 = new ThreadLocal<String>(){
-        @Override
-        protected String initialValue(){
-            return "Second value: " + Thread.currentThread().getName();
-        }
-    };
+    private static ThreadLocal<String> data2 = new ThreadLocal<String>() {
+                                                 @Override
+                                                 protected String initialValue() {
+                                                     return "Second value: " + Thread.currentThread().getName();
+                                                 }
+                                             };
 
     @Override
-    public void run(){
+    public void run() {
         System.out.println(data.get());
         System.out.println(data2.get());
         data.set(Thread.currentThread().getName() + " add data");

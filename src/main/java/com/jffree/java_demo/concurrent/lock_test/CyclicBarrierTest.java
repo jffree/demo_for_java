@@ -5,15 +5,14 @@ import java.util.concurrent.CyclicBarrier;
 
 public class CyclicBarrierTest {
 
-    private static int SIZE = 5;
+    private static int           SIZE = 5;
     private static CyclicBarrier cb;
-
 
     public static void main(String[] args) {
         cb = new CyclicBarrier(SIZE);
         // 新建5个任务
-        for(int i=0; i<SIZE; i++){
-            new Thread(){
+        for (int i = 0; i < SIZE; i++) {
+            new Thread() {
                 @Override
                 public void run() {
                     try {

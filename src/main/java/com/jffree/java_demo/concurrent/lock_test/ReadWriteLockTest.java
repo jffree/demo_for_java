@@ -3,7 +3,6 @@ package com.jffree.java_demo.concurrent.lock_test;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-
 public class ReadWriteLockTest {
 
     public static void main(String[] args) {
@@ -13,16 +12,16 @@ public class ReadWriteLockTest {
         User user = new User("Tommy", myCount);
 
         // 分别启动3个“读取账户金钱”的线程 和 3个“设置账户金钱”的线程
-        for (int i=0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             user.getCash();
-            user.setCash((i+1)*1000);
+            user.setCash((i + 1) * 1000);
         }
     }
 
     private static class User {
-        private String name;            //用户名
-        private MyCount myCount;        //所要操作的账户
-        private ReadWriteLock myLock;   //执行操作所需的锁对象
+        private String        name;   //用户名
+        private MyCount       myCount; //所要操作的账户
+        private ReadWriteLock myLock; //执行操作所需的锁对象
 
         User(String name, MyCount myCount) {
             this.name = name;
@@ -36,10 +35,10 @@ public class ReadWriteLockTest {
                 public void run() {
                     myLock.readLock().lock();
                     try {
-                        System.out.println(Thread.currentThread().getName() +" getCash start");
+                        System.out.println(Thread.currentThread().getName() + " getCash start");
                         myCount.getCash();
                         Thread.sleep(2000);
-                        System.out.println(Thread.currentThread().getName() +" getCash end");
+                        System.out.println(Thread.currentThread().getName() + " getCash end");
                     } catch (InterruptedException e) {
                     } finally {
                         myLock.readLock().unlock();
@@ -54,10 +53,10 @@ public class ReadWriteLockTest {
                 public void run() {
                     myLock.writeLock().lock();
                     try {
-                        System.out.println(Thread.currentThread().getName() +" setCash start");
+                        System.out.println(Thread.currentThread().getName() + " setCash start");
                         myCount.setCash(cash);
                         Thread.sleep(1000);
-                        System.out.println(Thread.currentThread().getName() +" setCash end");
+                        System.out.println(Thread.currentThread().getName() + " setCash end");
                     } catch (InterruptedException e) {
                     } finally {
                         myLock.writeLock().unlock();
@@ -68,8 +67,8 @@ public class ReadWriteLockTest {
     }
 
     private static class MyCount {
-        private String id;         //账号
-        private int    cash;       //账户余额
+        private String id;  //账号
+        private int    cash; //账户余额
 
         MyCount(String id, int cash) {
             this.id = id;
@@ -85,16 +84,13 @@ public class ReadWriteLockTest {
         }
 
         public int getCash() {
-            System.out.println(Thread.currentThread().getName() +" getCash cash="+ cash);
+            System.out.println(Thread.currentThread().getName() + " getCash cash=" + cash);
             return cash;
         }
 
         public void setCash(int cash) {
-            System.out.println(Thread.currentThread().getName() +" setCash cash="+ cash);
+            System.out.println(Thread.currentThread().getName() + " setCash cash=" + cash);
             this.cash = cash;
         }
     }
 }
-
-
-

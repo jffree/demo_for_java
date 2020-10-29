@@ -8,7 +8,7 @@ public class LockSupportTest {
         blockUse();
     }
 
-    private static void normalUse(){
+    private static void normalUse() {
         Thread threadA = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -27,7 +27,7 @@ public class LockSupportTest {
         LockSupport.unpark(threadA);
     }
 
-    private static void blockUse(){
+    private static void blockUse() {
         Thread threadA = new Thread(new Runnable() {
             @Override
             public void run() {

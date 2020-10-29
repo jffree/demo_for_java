@@ -5,10 +5,10 @@ import java.util.concurrent.*;
 
 public class CopyOnWriteArrayListTest {
 
-
     // TODO: list是ArrayList对象时，程序会出错。
     //private static List<String> list = new ArrayList<String>();
     private static List<String> list = new CopyOnWriteArrayList<String>();
+
     public static void main(String[] args) {
 
         // 同时启动两个线程对list进行操作！
@@ -18,10 +18,10 @@ public class CopyOnWriteArrayListTest {
 
     private static void printAll() {
         String value = Thread.currentThread().getName();
-        StringBuilder builder = new StringBuilder(Thread.currentThread().getName()+": ");
+        StringBuilder builder = new StringBuilder(Thread.currentThread().getName() + ": ");
         Iterator iter = list.iterator();
-        while(iter.hasNext()) {
-            builder.append((String)iter.next() + ", ");
+        while (iter.hasNext()) {
+            builder.append((String) iter.next() + ", ");
         }
         System.out.println(builder.toString());
     }
@@ -30,12 +30,13 @@ public class CopyOnWriteArrayListTest {
         MyThread(String name) {
             super(name);
         }
+
         @Override
         public void run() {
             int i = 0;
             while (i++ < 6) {
                 // “线程名” + "-" + "序号"
-                String val = Thread.currentThread().getName()+"-"+i;
+                String val = Thread.currentThread().getName() + "-" + i;
                 list.add(val);
                 // 通过“Iterator”遍历List。
                 printAll();

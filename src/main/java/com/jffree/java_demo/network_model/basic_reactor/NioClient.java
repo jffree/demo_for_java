@@ -21,10 +21,10 @@ public class NioClient extends Thread {
     private final Selector             selector;
     private final SocketChannel        socketChannel;
     private final SelectionKey         sk;
-    final private ByteBuffer     input  = ByteBuffer.allocate(1000);
-    final private ByteBuffer     output = ByteBuffer.allocate(1000);
-    private Reader               reader;
-    private Sender               sender;
+    final private ByteBuffer           input  = ByteBuffer.allocate(1000);
+    final private ByteBuffer           output = ByteBuffer.allocate(1000);
+    private Reader                     reader;
+    private Sender                     sender;
     private final int                  port;
     private final String               host;
     private final int                  clientId;

@@ -12,14 +12,14 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 final public class Handler implements Runnable {
-    private final SocketChannel      socket;
-    private final SelectionKey       sk;
-    private final Selector           selector;
-    private final ByteBuffer         input    = ByteBuffer.allocate(1000);
-    private final ByteBuffer         output   = ByteBuffer.allocate(1000);               ;
+    private final SocketChannel             socket;
+    private final SelectionKey              sk;
+    private final Selector                  selector;
+    private final ByteBuffer                input    = ByteBuffer.allocate(1000);
+    private final ByteBuffer                output   = ByteBuffer.allocate(1000);                ;
     private final static ThreadPoolExecutor executor = new ThreadPoolExecutor(2, 4, 5, TimeUnit.SECONDS,
-                                            new LinkedBlockingDeque<Runnable>(40));
-    private Sender             sender;
+                                                         new LinkedBlockingDeque<Runnable>(40));
+    private Sender                          sender;
 
     public Handler(Selector sel, SocketChannel c) throws IOException {
         selector = sel;
@@ -30,7 +30,6 @@ final public class Handler implements Runnable {
         sk.interestOps(SelectionKey.OP_READ);
         sel.wakeup();
     }
-
 
     //sender 依然跟处理接受请求在同一个线程，根据 reactor 的模型，这里应该只有发送数据，而没有编解码处理
     public class Sender implements Runnable {

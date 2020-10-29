@@ -7,6 +7,7 @@ import java.util.concurrent.Semaphore;
 public class SemaphoreTest {
 
     private static final int SEM_MAX = 10;
+
     public static void main(String[] args) {
         Semaphore sem = new Semaphore(SEM_MAX);
         //创建线程池
@@ -20,8 +21,8 @@ public class SemaphoreTest {
     }
 
     private static class MyThread extends Thread {
-        private volatile Semaphore sem;    // 信号量
-        private int count;        // 申请信号量的大小
+        private volatile Semaphore sem;  // 信号量
+        private int                count; // 申请信号量的大小
 
         MyThread(Semaphore sem, int count) {
             this.sem = sem;
@@ -34,7 +35,7 @@ public class SemaphoreTest {
                 sem.acquire(count);
 
                 Thread.sleep(2000);
-                System.out.println(Thread.currentThread().getName() + " acquire count="+count);
+                System.out.println(Thread.currentThread().getName() + " acquire count=" + count);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
